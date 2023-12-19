@@ -1,17 +1,13 @@
+import { FunctionComponent } from "react";
+import Categories from "./components/categories/categories.component";
 
-import { FunctionComponent } from "react"
-import Header from "./components/Header/header.components"
 
-interface AppProps {
-  message?: string
-}
-
-const Home: FunctionComponent<AppProps> = ({ message }) => {
+const Home: FunctionComponent = () => {
   return (
     <div>
-    <Header />
+      <Categories />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
