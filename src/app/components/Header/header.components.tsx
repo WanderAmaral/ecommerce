@@ -2,7 +2,7 @@ import {BsCart} from 'react-icons/bs'
 
 const Header = () => {
     return (
-      <div className="bg-[#212529] w-full flex justify-between p-4 text-[#f8f9fa]"> {/* Header-container */}
+      <div className="  bg-background-dark w-full flex justify-between p-4 text-white"> {/* Header-container */}
         <div className="flex items-center"> {/* Header-items-container */}
           <h1 className="text-lg mr-4">Ecommerce</h1> {/* header-title */}
         </div>
