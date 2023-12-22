@@ -1,23 +1,30 @@
-"use client"
+"use client";
 
 import Category from "@/types/category.type";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import env from "@/config/env.config";
 
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "@/config/firebase-config";
+import CategoryItem from "../category-item/category-item.component";
 
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
-  console.log(categories);
+
   const fetchCategories = async () => {
     try {
-      const { data } = await axios.get(`${env.apiUrl}/api/category`);
-      setCategories(data);
+      const categoriesFromFireStore: Category[] = [];
+
+      const querySnapshot = await getDocs(collection(db, "categories"));
+
+      querySnapshot.forEach((doc: any) =>
+        categoriesFromFireStore.push(doc.data())
+      );
+      setCategories(categoriesFromFireStore);
     } catch (error) {
-      console.log(error);
+      console.log({ error });
     }
   };
-  
+
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -26,7 +33,7 @@ const Categories = () => {
       {/*categories-container */}
       <div className="h-full w-1920px gap-4 grid grid-cols-2 p-30px">
         {/*categories-content */}
-        {/* {categories.map((category) => <CategoryItem />)} */}
+        {categories.map((category) => <CategoryItem category={category} key={category.id}/>)}
       </div>
     </div>
   );
