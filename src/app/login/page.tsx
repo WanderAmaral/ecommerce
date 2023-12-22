@@ -1,35 +1,38 @@
-import React from 'react';
+import React from "react";
+import Button from "../components/button";
+import {BsGoogle} from 'react-icons/bs'
 
 const LoginPage = () => {
   return (
-    <div className="h-full flex items-center justify-center">
+    <div className="h-full flex items-center justify-center mt-40">
       {/* LoginContainer */}
-      <div className="flex flex-col items-center border w-450px">
+      <div className="flex flex-col items-center w-96">
         {/* LoginContent */}
-        <div className="font-semibold text-sm text-primary">
-          {/* LoginHeadline */}
-          <p className="font-weight-600 text-1.3rem mb-20 text-dark">Login Headline</p>
 
-          {/* LoginSubtitle */}
-          <div className="text-dark pb-20 border-b-1 border-zinc-900 w-full mt-20 text-center font-medium mb-20">
-            <h1 className="text-primary">Hello world</h1>
+        <p className=" text-texto-dark font-semibold mb-20px text-rem">
+          Entre com a sua conta
+        </p>
+        {/* LoginHeadline */}
+        {/* LoginSubtitle */}
+        <Button startIcon={<BsGoogle size={18}/>}>Entrar com o Google</Button>
+        <p className="text-primary w-full p-4 mb-20  text-center font-medium  border-b border-black">
+          ou entre com seu email
+        </p>
 
-            {/* LoginInputContainer */}
-            <div className="w-full mb-10">
-              <p className="font-weight-600 mb-5">Label 1</p>
-              <input className="w-full border-black" />
-            </div>
-
-            <div className="w-full">
-              <p className="font-weight-600 mb-5">Label 2</p>
-              <input className="w-full" />
-            </div>
-            {/* End LoginInputContainer */}
-
-            {/* Button */}
-            {/* Add your button component or Tailwind CSS classes here */}
-          </div>
+        {/* LoginInputContainer */}
+        <div className="w-full mb-20">
+          <p className=" font-semibold mb-5">Label 1</p>
+          <input className="w-full" />
         </div>
+
+        <div className="w-full">
+          <p className="font-semibold mb-5">Label 2</p>
+          <input className="w-full" />
+        </div>
+        {/* End LoginInputContainer */}
+
+        {/* Button */}
+        {/* Add your button component or Tailwind CSS classes here */}
       </div>
     </div>
   );

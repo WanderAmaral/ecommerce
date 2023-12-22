@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors: {
         primary: '#212529',
-        text: {
+        texto: {
           white: '#f8f9fa',
           dark: '#343a40'
         },
@@ -28,6 +28,9 @@ const config: Config = {
           placeholder: '#6c757d'
         },
         error: '#ff6a6a'
+      },
+      fontSize: {
+        rem: '1.3rem',
       }
     },
   },
