@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../components/button";
 import {BsGoogle} from 'react-icons/bs'
+import {FiLogIn} from 'react-icons/fi'
+import CustomInputContainer from "./components/custom-input";
 
 const LoginPage = () => {
   return (
@@ -15,23 +17,23 @@ const LoginPage = () => {
         {/* LoginHeadline */}
         {/* LoginSubtitle */}
         <Button startIcon={<BsGoogle size={18}/>}>Entrar com o Google</Button>
-        <p className="text-primary w-full p-4 mb-20  text-center font-medium  border-b border-black">
+        <p className="text-primary w-full p-3 mb-8  text-center font-medium  border-b border-black">
           ou entre com seu email
         </p>
 
         {/* LoginInputContainer */}
-        <div className="w-full mb-20">
-          <p className=" font-semibold mb-5">Label 1</p>
-          <input className="w-full" />
+        <div className="w-full mb-5">
+          <p className=" font-semibold mb-5">Usuário</p>
+          <CustomInputContainer placeholder="Digite seu email"/>
         </div>
 
         <div className="w-full">
-          <p className="font-semibold mb-5">Label 2</p>
-          <input className="w-full" />
+          <p className="font-semibold mb-5">Senha</p>
+          <CustomInputContainer placeholder="Digite sua senha"/>
         </div>
         {/* End LoginInputContainer */}
 
-        {/* Button */}
+        <Button startIcon={<FiLogIn size={18}/>}>Entrar</Button>
         {/* Add your button component or Tailwind CSS classes here */}
       </div>
     </div>
