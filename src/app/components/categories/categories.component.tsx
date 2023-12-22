@@ -31,7 +31,7 @@ const Categories = () => {
   return (
     <div className="h-full w-full flex justify-center mt-10">
       {/*categories-container */}
-      <div className="h-full w-1920px gap-4 grid grid-cols-2 p-30px">
+      <div className=" m-4 h-full w-full gap-4 grid grid-cols-2 p-30px">
         {/*categories-content */}
         {categories.map((category) => <CategoryItem category={category} key={category.id}/>)}
       </div>

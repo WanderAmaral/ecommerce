@@ -6,7 +6,7 @@ const Header = () => {
         <div className="flex items-center"> {/* Header-items-container */}
           <h1 className="text-lg mr-4">Ecommerce</h1> {/* header-title */}
         </div>
-        <div className="flex items-center gap-2"> {/* Header-items */}
+        <div className="flex items-center gap-10"> {/* Header-items */}
           <div className="font-semibold text-sm">Login</div> {/* Header-item */}
           <div className="font-semibold text-sm">Explorar</div> {/* Header-item */}
           <div className="font-semibold text-sm">Conta</div> {/* Header-item */}
