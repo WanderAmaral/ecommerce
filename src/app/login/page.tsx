@@ -24,7 +24,7 @@ const LoginPage = () => {
         {/* LoginInputContainer */}
         <div className="w-full mb-5">
           <p className=" font-semibold mb-5">Usuário</p>
-          <CustomInputContainer placeholder="Digite seu email"/>
+          <CustomInputContainer placeholder="Digite seu email" />
         </div>
 
         <div className="w-full">
