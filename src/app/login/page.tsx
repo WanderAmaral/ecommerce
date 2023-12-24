@@ -4,10 +4,11 @@ import React from "react";
 import Button from "../components/button";
 import { BsGoogle } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
-import CustomInputContainer from "./components/custom-input";
+import CustomInputContainer from "../components/custom-input";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../components/input-error-message";
 import validator from "validator";
+import Link from "next/link";
 
 const LoginPage = () => {
   const {
@@ -61,13 +62,17 @@ const LoginPage = () => {
           <div className="w-full mb-5">
             <p className="font-semibold mb-5">Senha</p>
             <CustomInputContainer
-              hasError={!!errors?.email}
+              type="password"
+              hasError={!!errors?.password}
               placeholder="Digite sua senha"
-              {...register("password", { required: true })}
+              {...register("password", { required: true, })}
             />
             {errors?.password?.type === "required" && (
               <ErrorMessage>A senha é Obrigatório é Obrigatório</ErrorMessage>
             )}
+          </div>
+          <div>
+          <Link href={"create-login"} className="border-b border-b-black">Criar conta</Link>
           </div>
 
           {/* End LoginInputContainer */}
