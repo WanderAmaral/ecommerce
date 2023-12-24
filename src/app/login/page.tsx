@@ -13,6 +13,7 @@ const LoginPage = () => {
   const onSubmit = (data: any) => {
     console.log({ data });
   };
+  
 
   return (
     <div className="h-full flex items-center justify-center mt-40">
@@ -33,9 +34,9 @@ const LoginPage = () => {
         {/* LoginInputContainer */}
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="w-full mb-5">
-            <p className="font-semibold mb-5">Usuário</p>
+            <p className="font-semibold mb-5">E-mail</p>
             <CustomInputContainer
-            
+              hasError={!! errors?.email}
               placeholder="Digite seu email"
               {...register("email", { required: true })}
             />
@@ -45,6 +46,7 @@ const LoginPage = () => {
           <div className="w-full mb-5">
             <p className="font-semibold mb-5">Senha</p>
             <CustomInputContainer
+            hasError={!! errors?.email}
               placeholder="Digite sua senha"
               {...register("password", { required: true })}
             />
