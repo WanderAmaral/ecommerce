@@ -6,14 +6,19 @@ import { BsGoogle } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
 import CustomInputContainer from "./components/custom-input";
 import { useForm } from "react-hook-form";
+import ErrorMessage from "../components/input-error-message";
+import validator from "validator";
 
 const LoginPage = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data: any) => {
     console.log({ data });
   };
-  
 
   return (
     <div className="h-full flex items-center justify-center mt-40">
@@ -36,28 +41,37 @@ const LoginPage = () => {
           <div className="w-full mb-5">
             <p className="font-semibold mb-5">E-mail</p>
             <CustomInputContainer
-              hasError={!! errors?.email}
+              hasError={!!errors?.email}
               placeholder="Digite seu email"
-              {...register("email", { required: true })}
+              {...register("email", {
+                required: true,
+                validate: (value) => {
+                  return validator.isEmail(value);
+                },
+              })}
             />
-            {/* {errors.email && <p className="text-red-500">Campo obrigatório</p>} */}
+            {errors?.email?.type === "required" && (
+              <ErrorMessage>O email é Obrigatório</ErrorMessage>
+            )}
+            {errors?.email?.type === 'validate' && (
+              <ErrorMessage>Por favor inserir um email valido</ErrorMessage>
+            )}
           </div>
 
           <div className="w-full mb-5">
             <p className="font-semibold mb-5">Senha</p>
             <CustomInputContainer
-            hasError={!! errors?.email}
+              hasError={!!errors?.email}
               placeholder="Digite sua senha"
               {...register("password", { required: true })}
             />
-            {/* {errors.password && <p className="text-red-500">Campo obrigatório</p>} */}
+            {errors?.password?.type === "required" && (
+              <ErrorMessage>A senha é Obrigatório é Obrigatório</ErrorMessage>
+            )}
           </div>
 
           {/* End LoginInputContainer */}
-          <Button
-            type="submit"
-            startIcon={<FiLogIn size={18} />}
-          >
+          <Button type="submit" startIcon={<FiLogIn size={18} />}>
             Entrar
           </Button>
         </form>
