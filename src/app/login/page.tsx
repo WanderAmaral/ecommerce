@@ -10,14 +10,19 @@ import ErrorMessage from "../components/input-error-message";
 import validator from "validator";
 import Link from "next/link";
 
+interface LoginUser {
+  email: string
+  password: string
+}
+
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<LoginUser>();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: LoginUser) => {
     console.log({ data });
   };
 
