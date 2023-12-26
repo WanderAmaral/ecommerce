@@ -15,7 +15,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = React.forwardRef(
 
     const inputClasses = `w-full bg-input-background ${
       hasError ? "border-2 border-error" : "border-none"
-    } p-2 box-border rounded-md text-text-dark focus:outline-none `;
+    } p-2 box-border rounded-md text-text-dark focus:outline-none shadow-lg`;
 
     return <input {...restProps} ref={ref as any} className={inputClasses} />;
   }
