@@ -1,6 +1,10 @@
 "use client";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "@/config/firebase-config";
 import React from "react";
 import { BsGoogle } from "react-icons/bs";
@@ -9,6 +13,7 @@ import { useForm } from "react-hook-form";
 import validator from "validator";
 import Link from "next/link";
 import { AuthError, AuthErrorCodes } from "firebase/auth";
+import { googleProvider } from "@/config/firebase-config";
 
 import CustomInputContainer from "../components/custom-input";
 import ErrorMessage from "../components/input-error-message";
@@ -36,7 +41,7 @@ const LoginPage = () => {
         data.email,
         data.password
       );
-      
+
       console.log(userCredentials);
     } catch (error) {
       console.log(error);
@@ -51,6 +56,16 @@ const LoginPage = () => {
     }
   };
 
+  const handleClickGoogleSignIn = async () => {
+    try {
+      const userCredential = await signInWithPopup(auth, googleProvider);
+
+      console.log(userCredential)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="h-full flex items-center justify-center mt-40">
       {/* LoginContainer */}
@@ -62,7 +77,15 @@ const LoginPage = () => {
         </p>
         {/* LoginHeadline */}
         {/* LoginSubtitle */}
-        <Button startIcon={<BsGoogle size={18} />}>Entrar com o Google</Button>
+
+        <Button
+        type="submit"
+          startIcon={<BsGoogle size={18} />}
+          onClick={handleClickGoogleSignIn}
+        >
+          Entrar com o Google
+        </Button>
+
         <p className="text-primary w-full p-3 mb-8 text-center font-medium border-b border-black">
           ou entre com seu email
         </p>
