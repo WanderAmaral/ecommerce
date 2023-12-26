@@ -1,13 +1,15 @@
 import { FunctionComponent } from "react";
 import Categories from "./components/categories.component";
-
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/config/firebase-config";
 
 const Home: FunctionComponent = () => {
-  return (
-    <div>
-      <Categories />
-    </div>
-  );
+
+  onAuthStateChanged(auth, (user) => {
+    console.log(user)
+  })
+  
+  return <Categories />;
 };
 
 export default Home;
