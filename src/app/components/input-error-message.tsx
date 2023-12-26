@@ -7,7 +7,7 @@ interface ErrorMessageProps {
 const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({children}) => {
   return (
     <div>
-      <p className="w-full text-colors-error text-sm mt-1 text-error">{children}</p>
+      <p className="w-full text-sm mt-1 text-error">{children}</p>
     </div>
   );
 };
