@@ -1,27 +1,48 @@
-'use client'
+"use client";
 import { FiLogIn } from "react-icons/fi";
-import Button from "../components/button";
-import CustomInput from "../components/custom-input";
 import { useForm } from "react-hook-form";
-import validator from "validator";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "@/config/firebase-config";
+import { auth } from "@/config/firebase-config";
+import { addDoc, collection } from "firebase/firestore";
+
+import CustomInput from "../components/custom-input";
+import Button from "../components/button";
 import ErrorMessage from "../components/input-error-message";
-import { error } from "console";
 
 interface SignUpForm {
-    name: string
-    lastName: string
-    email: string
-    password: string
-    passwordConfirmation: string
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
 }
 
 const CreateLogin = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpForm>();
 
-    const {register, handleSubmit, formState: {errors}} = useForm<SignUpForm>()
-
-    const onSubmit = (data: SignUpForm) => {
-        console.log({data})
-    }   
+  const onSubmit = async (data: SignUpForm) => {
+    try {
+      const userCrenditials = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      console.log({ userCrenditials });
+      await addDoc(collection(db, "users"), {
+        id: userCrenditials.user.uid,
+        fisrtName: data.firstName,
+        lastName: data.lastName,
+        email: userCrenditials.user.email,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex justify-center mt-40 h-full">
@@ -30,37 +51,63 @@ const CreateLogin = () => {
           Criar Conta
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <div className="w-full mt-5">
+          <div className="w-full mt-5">
             <p className="font-semibold mb-2">Nome</p>
-            <CustomInput hasError={!!errors?.name} placeholder="Digite seu nome" {...register('name', {required: true})}/>
-            {errors?.name?.type === 'required' && (<ErrorMessage>Por favor digitar o nome</ErrorMessage>)}
-        </div>
-        <div className="w-full mt-5">
+            <CustomInput
+              hasError={!!errors?.firstName}
+              placeholder="Digite seu nome"
+              {...register("firstName", { required: true })}
+            />
+            {errors?.firstName?.type === "required" && (
+              <ErrorMessage>Por favor digitar o nome</ErrorMessage>
+            )}
+          </div>
+          <div className="w-full mt-5">
             <p className="font-semibold mb-2">Sobrenome</p>
-            <CustomInput placeholder="Digite seu sobrenome" {...register('lastName', {required: true})}/>
-            {errors?.lastName?.type === 'required' && (<ErrorMessage>Por favor digitar o sobrenome</ErrorMessage>)}
-        </div>
-        <div className="w-full mt-5">
+            <CustomInput
+              placeholder="Digite seu sobrenome"
+              {...register("lastName", { required: true })}
+            />
+            {errors?.lastName?.type === "required" && (
+              <ErrorMessage>Por favor digitar o sobrenome</ErrorMessage>
+            )}
+          </div>
+          <div className="w-full mt-5">
             <p className="font-semibold mb-2">E-mail</p>
-            <CustomInput placeholder="Digite seu e-mail" {...register('email', {required: true})}/>
-            {errors?.email?.type === 'required' && (<ErrorMessage>Por favor digitar o email</ErrorMessage>)}
-        </div>
-        <div className="w-full mt-5">
+            <CustomInput
+              placeholder="Digite seu e-mail"
+              {...register("email", { required: true })}
+            />
+            {errors?.email?.type === "required" && (
+              <ErrorMessage>Por favor digitar o email</ErrorMessage>
+            )}
+          </div>
+          <div className="w-full mt-5">
             <p className="font-semibold mb-2">Senha</p>
-            <CustomInput type="password" placeholder="Digite sua senha" {...register('password', {required: true})}/>
-            {errors?.password?.type === 'required' && (<ErrorMessage>Por favor digitar a senha</ErrorMessage>)}
-        </div>
-        <div className="w-full mt-5">
+            <CustomInput
+              type="password"
+              placeholder="Digite sua senha"
+              {...register("password", { required: true })}
+            />
+            {errors?.password?.type === "required" && (
+              <ErrorMessage>Por favor digitar a senha</ErrorMessage>
+            )}
+          </div>
+          <div className="w-full mt-5">
             <p className="font-semibold mb-2">Confirmar senha</p>
-            <CustomInput placeholder="Confirmar senha" type="password"{...register('passwordConfirmation')}/>
-            {errors?.passwordConfirmation?.type === 'required' && (<ErrorMessage>Por favor Confirme sua senha</ErrorMessage>)}
-        </div>
-        <Button startIcon={<FiLogIn />}>Criar Conta</Button>
+            <CustomInput
+              placeholder="Confirmar senha"
+              type="password"
+              {...register("passwordConfirmation")}
+            />
+            {errors?.passwordConfirmation?.type === "required" && (
+              <ErrorMessage>Por favor Confirme sua senha</ErrorMessage>
+            )}
+          </div>
+          <Button startIcon={<FiLogIn />}>Criar Conta</Button>
         </form>
       </div>
-      
     </div>
-    
   );
 };
 

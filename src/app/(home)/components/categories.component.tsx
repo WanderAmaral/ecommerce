@@ -8,7 +8,6 @@ import { db } from "@/config/firebase-config";
 import CategoryItem from "./category-item.component";
 import { categoryConverter } from "@/converters/firestore.converter";
 
-
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -16,7 +15,9 @@ const Categories = () => {
     try {
       const categoriesFromFireStore: Category[] = [];
 
-      const querySnapshot = await getDocs(collection(db, "categories").withConverter(categoryConverter));
+      const querySnapshot = await getDocs(
+        collection(db, "categories").withConverter(categoryConverter)
+      );
 
       querySnapshot.forEach((doc: any) =>
         categoriesFromFireStore.push(doc.data())
@@ -31,7 +32,6 @@ const Categories = () => {
     fetchCategories();
   }, []);
   return (
-    
     <div className="h-full w-full flex justify-center mt-10">
       {/*categories-container */}
       <div className=" m-4 h-full w-full gap-4 grid grid-cols-2 p-30px">
@@ -41,7 +41,6 @@ const Categories = () => {
         ))}
       </div>
     </div>
-    
   );
 };
 
