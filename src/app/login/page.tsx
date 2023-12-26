@@ -2,18 +2,19 @@
 
 import {
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signInWithRedirect,
 } from "firebase/auth";
-import { auth } from "@/config/firebase-config";
-import React from "react";
+import { auth, googleProvider } from "@/config/firebase-config";
+import React, { useEffect } from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
 import validator from "validator";
 import Link from "next/link";
 import { AuthError, AuthErrorCodes } from "firebase/auth";
-import { googleProvider } from "@/config/firebase-config";
 
 import CustomInputContainer from "../components/custom-input";
 import ErrorMessage from "../components/input-error-message";
@@ -23,8 +24,6 @@ export interface LoginUser {
   email: string;
   password: string;
 }
-
-export const userAdm = "wanderamaral013@gmail.com";
 
 const LoginPage = () => {
   const {
@@ -58,13 +57,14 @@ const LoginPage = () => {
 
   const handleClickGoogleSignIn = async () => {
     try {
-      const userCredential = await signInWithPopup(auth, googleProvider);
-
-      console.log(userCredential)
+      const userCredential = await signInWithRedirect(auth, googleProvider);
+      // add um dominio
+      console.log(userCredential);
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   return (
     <div className="h-full flex items-center justify-center mt-40">
@@ -77,14 +77,14 @@ const LoginPage = () => {
         </p>
         {/* LoginHeadline */}
         {/* LoginSubtitle */}
-
+        <form onSubmit={handleClickGoogleSignIn} className="w-full">
         <Button
-        type="submit"
+          type="submit"
           startIcon={<BsGoogle size={18} />}
-          onClick={handleClickGoogleSignIn}
         >
           Entrar com o Google
         </Button>
+        </form>
 
         <p className="text-primary w-full p-3 mb-8 text-center font-medium border-b border-black">
           ou entre com seu email

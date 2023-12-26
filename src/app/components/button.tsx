@@ -1,8 +1,9 @@
-import React, { FunctionComponent, ReactNode, ButtonHTMLAttributes } from "react";
+import React, { FunctionComponent, ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+  children: React.ReactNode;
   startIcon?: React.ReactNode;
+  
 }
 
 const Button: FunctionComponent<ButtonProps> = ({ children, startIcon}) => {
