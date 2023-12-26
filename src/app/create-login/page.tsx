@@ -5,12 +5,13 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "@/config/firebase-config";
 import { auth } from "@/config/firebase-config";
 import { addDoc, collection } from "firebase/firestore";
+import { onSubmit } from "@/actions/create-user";
 
 import CustomInput from "../components/custom-input";
 import Button from "../components/button";
 import ErrorMessage from "../components/input-error-message";
 
-interface SignUpForm {
+export interface SignUpForm {
   firstName: string;
   lastName: string;
   email: string;
@@ -25,24 +26,7 @@ const CreateLogin = () => {
     formState: { errors },
   } = useForm<SignUpForm>();
 
-  const onSubmit = async (data: SignUpForm) => {
-    try {
-      const userCrenditials = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      console.log({ userCrenditials });
-      await addDoc(collection(db, "users"), {
-        id: userCrenditials.user.uid,
-        fisrtName: data.firstName,
-        lastName: data.lastName,
-        email: userCrenditials.user.email,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
 
   return (
     <div className="flex justify-center mt-40 h-full">
