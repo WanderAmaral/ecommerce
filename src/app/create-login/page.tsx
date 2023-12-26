@@ -47,9 +47,8 @@ const CreateLogin = () => {
       const _error = error as AuthError;
 
       if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
-        return setError('email', {type: 'alreadyInUse'})
+        return setError("email", { type: "alreadyInUse" });
       }
-      
     }
   };
 
@@ -90,7 +89,7 @@ const CreateLogin = () => {
             {errors?.email?.type === "required" && (
               <ErrorMessage>Por favor digitar o email</ErrorMessage>
             )}
-            {errors?.email?.type === 'alreadyInUse' && (
+            {errors?.email?.type === "alreadyInUse" && (
               <ErrorMessage>O e-mail já esta em uso!</ErrorMessage>
             )}
           </div>
@@ -105,7 +104,9 @@ const CreateLogin = () => {
               <ErrorMessage>Por favor digitar a senha</ErrorMessage>
             )}
             {errors?.password?.type === "minLength" && (
-              <ErrorMessage>A senha deve conter no minimo 6 digitos</ErrorMessage>
+              <ErrorMessage>
+                A senha deve conter no minimo 6 digitos
+              </ErrorMessage>
             )}
           </div>
           <div className="w-full mt-5">
@@ -113,13 +114,18 @@ const CreateLogin = () => {
             <CustomInput
               placeholder="Confirmar senha"
               type="password"
-              {...register("passwordConfirmation", {required: true, minLength: 6})}
+              {...register("passwordConfirmation", {
+                required: true,
+                minLength: 6,
+              })}
             />
             {errors?.passwordConfirmation?.type === "required" && (
               <ErrorMessage>Por favor Confirme sua senha</ErrorMessage>
             )}
             {errors?.passwordConfirmation?.type === "minLength" && (
-              <ErrorMessage>A senha deve conter no minimo 6 digitos</ErrorMessage>
+              <ErrorMessage>
+                A senha deve conter no minimo 6 digitos
+              </ErrorMessage>
             )}
           </div>
           <Button startIcon={<FiLogIn />}>Criar Conta</Button>

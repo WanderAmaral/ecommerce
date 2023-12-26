@@ -14,10 +14,12 @@ import CustomInputContainer from "../components/custom-input";
 import ErrorMessage from "../components/input-error-message";
 import Button from "../components/button";
 
-interface LoginUser {
+export interface LoginUser {
   email: string;
   password: string;
 }
+
+export const userAdm = "wanderamaral013@gmail.com";
 
 const LoginPage = () => {
   const {
@@ -34,6 +36,7 @@ const LoginPage = () => {
         data.email,
         data.password
       );
+      
       console.log(userCredentials);
     } catch (error) {
       console.log(error);
@@ -85,7 +88,6 @@ const LoginPage = () => {
             {errors?.email?.type === "validate" && (
               <ErrorMessage>Por favor inserir um email valido</ErrorMessage>
             )}
-            
           </div>
 
           <div className="w-full mb-5">
@@ -99,9 +101,10 @@ const LoginPage = () => {
             {errors?.password?.type === "required" && (
               <ErrorMessage>A senha é Obrigatório é Obrigatório</ErrorMessage>
             )}
-            {errors?.email?.type && errors?.password?.type === "invalidCredential" && (
-              <ErrorMessage>O email ou senha esta incorreto</ErrorMessage>
-            )}
+            {errors?.email?.type &&
+              errors?.password?.type === "invalidCredential" && (
+                <ErrorMessage>O email ou senha esta incorreto</ErrorMessage>
+              )}
           </div>
           <div>
             <Link href={"create-login"} className="border-b border-b-black">
