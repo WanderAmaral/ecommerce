@@ -8,7 +8,7 @@ import {
   signInWithRedirect,
 } from "firebase/auth";
 import { auth, googleProvider } from "@/config/firebase-config";
-import React, { useEffect } from "react";
+import React from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
@@ -57,9 +57,9 @@ const LoginPage = () => {
 
   const handleClickGoogleSignIn = async () => {
     try {
-      const userCredential = await signInWithRedirect(auth, googleProvider);
+      const userCredential = await signInWithPopup(auth, googleProvider);
       // add um dominio
-      console.log(userCredential);
+      console.log({userCredential});
     } catch (error) {
       console.log(error);
     }
