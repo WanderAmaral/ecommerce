@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signInWithRedirect,
-} from "firebase/auth";
-import { auth, googleProvider } from "@/config/firebase-config";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, db, googleProvider } from "@/config/firebase-config";
 import React from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
@@ -19,6 +13,7 @@ import { AuthError, AuthErrorCodes } from "firebase/auth";
 import CustomInputContainer from "../components/custom-input";
 import ErrorMessage from "../components/input-error-message";
 import Button from "../components/button";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export interface LoginUser {
   email: string;
@@ -57,9 +52,27 @@ const LoginPage = () => {
 
   const handleClickGoogleSignIn = async () => {
     try {
-      const userCredential = await signInWithPopup(auth, googleProvider);
-      // add um dominio
-      console.log(userCredential);
+      const userCredentials = await signInWithPopup(auth, googleProvider);
+      const querySnapshot = await getDocs(
+        query(
+          collection(db, "users"),
+          where("id", "==", userCredentials.user.uid)
+        )
+      );
+
+      const user = querySnapshot.docs[0]?.data();
+
+      if (!user) {
+        const firstName = userCredentials.user.displayName?.split(" ")[0];
+        const lastName = userCredentials.user.displayName?.split(" ")[1];
+
+        await addDoc(collection(db, "users"), {
+          id: userCredentials.user.uid,
+          email: userCredentials.user.email,
+          firstName,
+          lastName,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -72,16 +85,14 @@ const LoginPage = () => {
         {/* LoginContent */}
 
         <p className="text-texto-dark font-semibold mb-5 text-rem">
-          Entre com a sua conta 
+          Entre com a sua conta
         </p>
         {/* LoginHeadline */}
         {/* LoginSubtitle */}
 
         <div className="w-full gap-2  max-h-11 bg-background-dark text-texto-white flex items-center justify-center rounded-lg  pt-5 pb-5 mt-5 font-semibold hover:bg-zinc-500 transition ease-in duration-300">
           <BsGoogle size={18} />
-          <button onClick={handleClickGoogleSignIn}>
-            Entrar com o google 
-          </button>
+          <button onClick={handleClickGoogleSignIn}>Entrar com o google</button>
         </div>
         <p className="text-primary w-full p-3 mb-8 text-center font-medium border-b border-black">
           ou entre com seu email
