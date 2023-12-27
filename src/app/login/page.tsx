@@ -80,7 +80,7 @@ const LoginPage = () => {
         <div className="w-full gap-2  max-h-11 bg-background-dark text-texto-white flex items-center justify-center rounded-lg  pt-5 pb-5 mt-5 font-semibold hover:bg-zinc-500 transition ease-in duration-300">
           <BsGoogle size={18} />
           <button onClick={handleClickGoogleSignIn}>
-            Entrar com o google 2
+            Entrar com o google 
           </button>
         </div>
         <p className="text-primary w-full p-3 mb-8 text-center font-medium border-b border-black">
