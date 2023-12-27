@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBmGD6bJe6TBEfS31z5R_Yrm7U68Lzbhsc",
-  authDomain: "e-commerce-amaral.firebaseapp.com",
-  projectId: "e-commerce-amaral",
-  storageBucket: "e-commerce-amaral.appspot.com",
-  messagingSenderId: "78722035966",
-  appId: "1:78722035966:web:7586a64953a3ebdb8075af"
+  apiKey: "AIzaSyBTWfSnkr_a23YFeGb4ONmHlCFIikumY7k",
+  authDomain: "club-ecommerce-313da.firebaseapp.com",
+  projectId: "club-ecommerce-313da",
+  storageBucket: "club-ecommerce-313da.appspot.com",
+  messagingSenderId: "967700354438",
+  appId: "1:967700354438:web:27ce6090a13d6a231a8807",
 };
 
 export const app = initializeApp(firebaseConfig);

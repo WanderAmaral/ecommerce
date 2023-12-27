@@ -59,12 +59,11 @@ const LoginPage = () => {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
       // add um dominio
-      console.log({userCredential});
+      console.log(userCredential);
     } catch (error) {
       console.log(error);
     }
   };
-  
 
   return (
     <div className="h-full flex items-center justify-center mt-40">
@@ -73,19 +72,17 @@ const LoginPage = () => {
         {/* LoginContent */}
 
         <p className="text-texto-dark font-semibold mb-5 text-rem">
-          Entre com a sua conta
+          Entre com a sua conta 
         </p>
         {/* LoginHeadline */}
         {/* LoginSubtitle */}
-        <form onSubmit={handleClickGoogleSignIn} className="w-full">
-        <Button
-          type="submit"
-          startIcon={<BsGoogle size={18} />}
-        >
-          Entrar com o Google
-        </Button>
-        </form>
 
+        <div className="w-full gap-2  max-h-11 bg-background-dark text-texto-white flex items-center justify-center rounded-lg  pt-5 pb-5 mt-5 font-semibold hover:bg-zinc-500 transition ease-in duration-300">
+          <BsGoogle size={18} />
+          <button onClick={handleClickGoogleSignIn}>
+            Entrar com o google 2
+          </button>
+        </div>
         <p className="text-primary w-full p-3 mb-8 text-center font-medium border-b border-black">
           ou entre com seu email
         </p>
