@@ -1,6 +1,5 @@
 interface UserAdm {
-  firstName: string
-  lastName: string
-  email: string
-  userType: string
+  email: 'wanderguizi@gmail.com'  
 }
+
+export default UserAdm
