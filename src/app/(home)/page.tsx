@@ -15,7 +15,7 @@ const Home: FunctionComponent = () => {
     });
   }, []);
 
-  const { adminUser, isAdministrador } = useContext(UserContext);
+  const { isAdministrador } = useContext(UserContext);
 
 
   return (

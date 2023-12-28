@@ -43,9 +43,7 @@ const Header = () => {
           <div className="font-semibold text-sm">Login</div>
         </Link>{" "}
         {/* Header-item */}
-        <Link href={"create-login"}>
-          <div className="font-semibold text-sm">Criar Conta</div>
-        </Link>{" "}
+      
         {/* Header-item */}
         <div className="font-semibold text-sm cursor-pointer" onClick={handleClickSignOut}>Sair</div>{" "}
         {/* Header-item */}
