@@ -9,13 +9,19 @@ import Button from "../components/button";
 
 
 const Home: FunctionComponent = () => {
+  const { isAdministrador,isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       console.log(user);
+      const isSignInOut = isAuthenticated && !user
+      if(isSignInOut) {
+        return logoutUser()
+      }
+      
     });
   }, []);
 
-  const { isAdministrador } = useContext(UserContext);
 
 
   return (
