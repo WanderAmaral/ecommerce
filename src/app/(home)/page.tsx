@@ -2,7 +2,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import Categories from "./components/categories.component";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "@/config/firebase-config";
+import { auth } from "@/config/firebase-config";
 import { useContext } from "react";
 import { UserContext } from "@/contexts/user.context";
 import Button from "../components/button";
@@ -14,13 +14,14 @@ import {
   where,
 } from "firebase/firestore";
 
-import User from "@/types/users.types";
-import { profile } from "console";
+
 
 const Home: FunctionComponent = () => {
-  onAuthStateChanged(auth, (user) => {
-    console.log(user);
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log(user);
+    });
+  }, [])
 
   const { adminUser } = useContext(UserContext);
   const [isAdministrador, setAdministrador] = useState(false);

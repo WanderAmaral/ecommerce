@@ -1,10 +1,20 @@
 "use client";
 
+import { auth } from "@/config/firebase-config";
+import { reload, signOut } from "firebase/auth";
 import Link from "next/link";
 
 import { BsCart } from "react-icons/bs";
 
 const Header = () => {
+  
+  const handleClickSignOut = () => {
+    signOut(auth) 
+    window.location.reload()
+    window.location.href = "/"
+  }
+
+
   return (
     <div className="  bg-background-dark w-full flex justify-between p-4 text-white shadow-xl">
       {" "}
@@ -37,7 +47,7 @@ const Header = () => {
           <div className="font-semibold text-sm">Criar Conta</div>
         </Link>{" "}
         {/* Header-item */}
-        <div className="font-semibold text-sm cursor-pointer">Sair</div>{" "}
+        <div className="font-semibold text-sm cursor-pointer" onClick={handleClickSignOut}>Sair</div>{" "}
         {/* Header-item */}
       </div>
     </div>
