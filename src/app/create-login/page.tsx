@@ -6,6 +6,7 @@ import {
   AuthError,
   createUserWithEmailAndPassword,
   AuthErrorCodes,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
@@ -43,6 +44,11 @@ const CreateLogin = () => {
         lastName: data.lastName,
         email: userCrenditials.user.email,
       });
+      onAuthStateChanged(auth, (user) => {
+        if(user) {
+          window.location.href = "/"
+        }
+      })
     } catch (error) {
       const _error = error as AuthError;
 
