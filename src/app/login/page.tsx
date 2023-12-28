@@ -1,6 +1,6 @@
 "use client";
 
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, db, googleProvider } from "@/config/firebase-config";
 import React from "react";
 import { BsGoogle } from "react-icons/bs";
@@ -35,8 +35,15 @@ const LoginPage = () => {
         data.email,
         data.password
       );
+      
+      onAuthStateChanged(auth, (user) => {
+        if(user) {
+          window.location.href = "/"
+        }
+      })
 
       console.log(userCredentials);
+
     } catch (error) {
       console.log(error);
       const _error = error as AuthError;
