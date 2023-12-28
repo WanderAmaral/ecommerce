@@ -26,7 +26,7 @@ interface UserContextProviderProps {
 const UserContextProvider: FunctionComponent<UserContextProviderProps> = ({ children }) => {
   // Defina o estado inicial como um objeto UserAdm
   const [adminUser, setAdminUser] = useState<UserAdm | null>({ email: 'wanderguizi@gmail.com' });
-  const [isAdministrador, setIsAdministrador] = useState(false)
+  const [isAdministrador, setIsAdministrador] = useState<UserAdm | boolean>(false)
 
   const verificarAdministrador = async (userEmail: string) => {
     const userIsAdmin = collection(db, 'users')
