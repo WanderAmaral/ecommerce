@@ -2,7 +2,7 @@
 
 import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, db, googleProvider } from "@/config/firebase-config";
-import React from "react";
+import React, { useState } from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
@@ -21,6 +21,9 @@ export interface LoginUser {
 }
 
 const LoginPage = () => {
+  
+  const [isInitializing, setIsInitializing] = useState(true)
+
   const {
     register,
     handleSubmit,

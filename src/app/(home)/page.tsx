@@ -1,5 +1,5 @@
 "use client";
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import Categories from "./components/categories.component";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "@/config/firebase-config";
@@ -10,9 +10,11 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 
 import User from "@/types/users.types";
 import { UserConverter } from "@/converters/firestore.converter";
+import Loading from "../components/loading/loading.component";
 
 
 const Home: FunctionComponent = () => {
+  const [isInitializing, setIsInitializing] = useState(true)
   const { isAdministrador, isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ const Home: FunctionComponent = () => {
   },);
   console.log({isAuthenticated})
 
-
+  if(isAuthenticated) return <Loading />
 
   return (
     <div>
