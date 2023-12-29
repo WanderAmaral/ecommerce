@@ -8,6 +8,9 @@ import { UserContext } from "@/contexts/user.context";
 import Button from "../components/button";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
+import User from "@/types/users.types";
+import { UserConverter } from "@/converters/firestore.converter";
+
 
 const Home: FunctionComponent = () => {
   const { isAdministrador, isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
@@ -23,10 +26,10 @@ const Home: FunctionComponent = () => {
       }
       const isSignIngIn = !isAuthenticated && user
       if(isSignIngIn) {
-        const querySnapshot = await getDocs(query(collection(db, 'users'), where('id', '==', user.uid)))
+        const querySnapshot = await getDocs(query(collection(db, 'users').withConverter(UserConverter), where('id', '==', user.uid)))
 
         const userFromFirestore = querySnapshot.docs[0]?.data()
-        return loginUser(userFromFirestore as any)
+        return loginUser(userFromFirestore)
       }
       
     });

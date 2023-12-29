@@ -1,5 +1,5 @@
 declare namespace NodeJS {
     interface ProcessEnv {
-        USER_EMAIL: string
+        USER_EMAIL: string;
     }
 }

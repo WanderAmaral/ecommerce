@@ -1,5 +1,6 @@
 "use client";
 
+import dotenv from 'dotenv'
 import { auth, db } from "@/config/firebase-config";
 import User from "@/types/users.types";
 import { onAuthStateChanged } from "firebase/auth";
@@ -11,9 +12,12 @@ import React, {
   useState,
 } from "react";
 
+dotenv.config()
+
 interface UserAdm {
   email: string;
 }
+
 
 interface UserContextProps {
   adminUser: UserAdm | null;
@@ -41,7 +45,7 @@ const UserContextProvider: FunctionComponent<UserContextProviderProps> = ({
 }) => {
   // Defina o estado inicial como um objeto UserAdm
   const [adminUser, setAdminUser] = useState<UserAdm | null>({
-    email: process.env.USER_EMAIL,
+    email: process.env.USER_EMAIL || 'wanderguizi@gmail.com'
   });
   const [isAdministrador, setIsAdministrador] = useState<UserAdm | boolean>(
     false
