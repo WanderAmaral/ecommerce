@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -5,6 +6,7 @@ import Header from "./components/header/header.components";
 import UserContextProvider from "@/contexts/user.context";
 import { useState } from "react";
 import Loading from "./components/loading/loading.component";
+import CategoryContextProvider from "@/contexts/category.context";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,8 +28,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <UserContextProvider>
+          <CategoryContextProvider>
           <Header />
           {children}
+          </CategoryContextProvider>
         </UserContextProvider>
       </body>
     </html>

@@ -1,39 +1,22 @@
 "use client";
 
 import Category from "@/types/category.type";
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
+
 
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "@/config/firebase-config";
 import CategoryItem from "./category-item.component";
 import { categoryConverter } from "@/converters/firestore.converter";
+import { CategoryContext } from "@/contexts/category.context";
+import Loading from "@/app/components/loading/loading.component";
 
 const Categories = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  const fetchCategories = async () => {
-    try {
-      const categoriesFromFireStore: Category[] = [];
-
-      const querySnapshot = await getDocs(
-        collection(db, "categories").withConverter(categoryConverter)
-      );
-
-      querySnapshot.forEach((doc: any) =>
-        categoriesFromFireStore.push(doc.data())
-      );
-      setCategories(categoriesFromFireStore);
-    } catch (error) {
-      console.log({ error });
-    }
-  };
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  const {categories, isLoading} = useContext(CategoryContext)
   return (
     <div className="h-full w-full flex justify-center mt-10">
       {/*categories-container */}
+      {isLoading && <Loading />}
       <div className=" m-4 h-full w-full gap-4 grid grid-cols-2 p-30px">
         {/*categories-content */}
         {categories.map((category) => (
