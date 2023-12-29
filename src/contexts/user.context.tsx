@@ -41,7 +41,7 @@ const UserContextProvider: FunctionComponent<UserContextProviderProps> = ({
 }) => {
   // Defina o estado inicial como um objeto UserAdm
   const [adminUser, setAdminUser] = useState<UserAdm | null>({
-    email: "wanderguizi@gmail.com",
+    email: process.env.USER_EMAIL,
   });
   const [isAdministrador, setIsAdministrador] = useState<UserAdm | boolean>(
     false
