@@ -8,7 +8,7 @@ import { UserContext } from "@/contexts/user.context";
 import Button from "../components/button/button";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-import User from "@/types/users.types";
+
 import { UserConverter } from "@/converters/firestore.converter";
 import Loading from "../components/loading/loading.component";
 
@@ -33,12 +33,15 @@ const Home: FunctionComponent = () => {
         const userFromFirestore = querySnapshot.docs[0]?.data()
         return loginUser(userFromFirestore)
       }
-      
+      return setIsInitializing(false)
     });
+    
   },);
   console.log({isAuthenticated})
 
-  if(isAuthenticated) return <Loading />
+  
+
+  if(isInitializing ) return <Loading />
 
   return (
     <div>
