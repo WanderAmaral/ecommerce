@@ -14,6 +14,7 @@ import CustomInputContainer from "../components/input/custom-input";
 import ErrorMessage from "../components/input/input-error-message";
 import Button from "../components/button/button";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import Loading from "../components/loading/loading.component";
 
 export interface LoginUser {
   email: string;
@@ -22,7 +23,7 @@ export interface LoginUser {
 
 const LoginPage = () => {
   
-  const [isInitializing, setIsInitializing] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
@@ -33,6 +34,7 @@ const LoginPage = () => {
 
   const onSubmit = async (data: LoginUser) => {
     try {
+      setIsLoading(true)
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -44,7 +46,7 @@ const LoginPage = () => {
           window.location.href = "/"
         }
       })
-
+      
       console.log(userCredentials);
 
     } catch (error) {
@@ -57,11 +59,14 @@ const LoginPage = () => {
       if (_error.code === AuthErrorCodes.INVALID_PASSWORD) {
         return setError("password", { type: "mismatch" });
       }
+    } finally {
+      setIsLoading(false)
     }
   };
 
   const handleClickGoogleSignIn = async () => {
     try {
+      setIsLoading(true)
       const userCredentials = await signInWithPopup(auth, googleProvider);
       const querySnapshot = await getDocs(
         query(
@@ -85,8 +90,12 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false)
     }
   };
+
+  if(isLoading) return <Loading />
 
   return (
     <div className="h-full flex items-center justify-center mt-40">
@@ -156,6 +165,7 @@ const LoginPage = () => {
           {/* End LoginInputContainer */}
           <Button type="submit" startIcon={<FiLogIn size={18} />}>
             Entrar
+            
           </Button>
         </form>
         {/* Add your button component or Tailwind CSS classes here */}
