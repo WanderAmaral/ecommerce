@@ -29,7 +29,9 @@ const Header = () => {
           <BsCart size={20} />
           <p className="ml-1">5</p>
         </div>
-        <div className="font-semibold text-sm cursor-pointer">Explorar</div>{" "}
+        <Link href={"/explore"}>
+        <div className="font-semibold text-sm cursor-pointer">Explorar</div>
+        </Link>
         {!isAuthenticated && (<Link href={"/login"}>
           <div className="font-semibold text-sm">Login</div>
         </Link>)}
