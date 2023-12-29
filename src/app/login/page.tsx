@@ -10,9 +10,9 @@ import validator from "validator";
 import Link from "next/link";
 import { AuthError, AuthErrorCodes } from "firebase/auth";
 
-import CustomInputContainer from "../components/custom-input";
-import ErrorMessage from "../components/input-error-message";
-import Button from "../components/button";
+import CustomInputContainer from "../components/input/custom-input";
+import ErrorMessage from "../components/input/input-error-message";
+import Button from "../components/button/button";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export interface LoginUser {

@@ -10,9 +10,9 @@ import {
 } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
-import CustomInput from "../components/custom-input";
-import Button from "../components/button";
-import ErrorMessage from "../components/input-error-message";
+import CustomInput from "../components/input/custom-input";
+import Button from "../components/button/button";
+import ErrorMessage from "../components/input/input-error-message";
 
 export interface SignUpForm {
   firstName: string;
