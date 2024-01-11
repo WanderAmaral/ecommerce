@@ -59,7 +59,7 @@ const CreateLogin = () => {
   };
 
   return (
-    <div className="flex justify-center mt-40 h-full">
+    <div className="flex justify-center mt-2 h-full">
       <div className="flex flex-col items-center w-96 mb">
         <p className="text-texto-dark font-semibold text-rem border-b border-b-zinc-600 w-full justify-center flex h-16">
           Criar Conta

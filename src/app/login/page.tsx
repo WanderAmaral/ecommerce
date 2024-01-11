@@ -98,7 +98,7 @@ const LoginPage = () => {
   if(isLoading) return <Loading />
 
   return (
-    <div className="h-full flex items-center justify-center mt-40">
+    <div className="h-full flex items-center justify-center mt-24">
       {/* LoginContainer */}
       <div className="flex flex-col items-center w-96">
         {/* LoginContent */}
