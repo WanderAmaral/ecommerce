@@ -4,8 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/header.components";
 import UserContextProvider from "@/contexts/user.context";
-import { useState } from "react";
-import Loading from "./components/loading/loading.component";
+
 import CategoryContextProvider from "@/contexts/category.context";
 
 

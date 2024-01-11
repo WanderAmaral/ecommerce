@@ -32,7 +32,7 @@ export const UserConverter = {
     return { ...user};
   },
 
-  fromFirestore(                                // fomFirestore, recebe dados
+  fromFirestore(                                // fromFirestore, recebe dados
     snapshot: QueryDocumentSnapshot,
     options: SnapshotOptions
   ): User {
