@@ -6,6 +6,8 @@ import Header from "./components/header/header.components";
 import UserContextProvider from "@/contexts/user.context";
 
 import CategoryContextProvider from "@/contexts/category.context";
+import CartContextProvider from "@/contexts/cart.context";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,12 +28,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        
         <UserContextProvider>
           <CategoryContextProvider>
+          <CartContextProvider>
           <Header />
           {children}
+          </CartContextProvider>
           </CategoryContextProvider>
         </UserContextProvider>
+        
       </body>
     </html>
   );
