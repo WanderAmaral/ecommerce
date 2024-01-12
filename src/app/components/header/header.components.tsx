@@ -7,16 +7,20 @@ import Link from "next/link";
 import { useContext } from "react";
 
 import { BsCart } from "react-icons/bs";
+import Cart from "../cart/cart.components";
+import { CartContext } from "@/contexts/cart.context";
 
 const Header = () => {
   const { isAuthenticated } = useContext(UserContext);
+  const {toggleCart} = useContext(CartContext)
 
   const handleClickSignOut = () => {
     signOut(auth);
     window.location.reload();
     window.location.href = "/";
   };
-
+  
+  
   return (
     <div className="  bg-background-dark w-full flex justify-between p-4 text-white shadow-xl">
       <div className="flex items-center">
@@ -25,7 +29,7 @@ const Header = () => {
         </Link>{" "}
       </div>
       <div className="flex items-center gap-10">
-        <div className="flex font-semibold text-sm cursor-pointer">
+        <div className="flex font-semibold text-sm cursor-pointer" onClick={toggleCart}>
           <BsCart size={20} />
           <p className="ml-1">5</p>
         </div>
@@ -41,6 +45,7 @@ const Header = () => {
         >
           Sair
         </div>}
+        
       </div>
     </div>
   );

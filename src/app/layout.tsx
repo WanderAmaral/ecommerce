@@ -7,6 +7,7 @@ import UserContextProvider from "@/contexts/user.context";
 
 import CategoryContextProvider from "@/contexts/category.context";
 import CartContextProvider from "@/contexts/cart.context";
+import Cart from "./components/cart/cart.components";
 
 
 
@@ -31,10 +32,12 @@ export default function RootLayout({
         
         <UserContextProvider>
           <CategoryContextProvider>
-          <CartContextProvider>
-          <Header />
-          {children}
-          </CartContextProvider>
+            <CartContextProvider>
+              <Header />
+              <Cart />
+                {children}
+                
+            </CartContextProvider>
           </CategoryContextProvider>
         </UserContextProvider>
         

@@ -31,6 +31,9 @@ const config: Config = {
       },
       fontSize: {
         rem: '1.3rem',
+      },
+      zIndex: {
+        '200': '200',
       }
     },
   },

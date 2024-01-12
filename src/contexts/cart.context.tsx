@@ -1,7 +1,7 @@
 'use client'
 import CartProduct from "@/types/cart.types"
-import Product from "@/types/products.type"
-import { Children, FunctionComponent, createContext, useState } from "react"
+
+import { FunctionComponent, createContext, useState } from "react"
 
 
 interface ICartContext {
@@ -15,7 +15,7 @@ interface ICartContextProps {
     children: React.ReactNode
 }
 
-const CartContext = createContext<ICartContext>({
+export const CartContext = createContext<ICartContext>({
     isVisible: false,
     products: [],
     toggleCart: () => {}
