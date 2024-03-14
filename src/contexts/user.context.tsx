@@ -1,6 +1,6 @@
 "use client";
 
-import dotenv from 'dotenv'
+
 import { auth, db } from "@/config/firebase-config";
 import User from "@/types/users.types";
 import { onAuthStateChanged } from "firebase/auth";
@@ -12,20 +12,21 @@ import React, {
   useState,
 } from "react";
 
-dotenv.config()
 
-interface UserAdm {
-  email: string;
+
+interface UserContextProviderProps {
+  children: React.ReactNode;
 }
-
-
 interface UserContextProps {
   adminUser: UserAdm | null;
   isAdministrador: UserAdm | boolean;
   isAuthenticated: boolean
   loginUser: (user: User) => void;
   logoutUser: () => void;
-
+  
+}
+interface UserAdm {
+  email: string;
 }
 
 export const UserContext = createContext<UserContextProps>({
@@ -36,9 +37,6 @@ export const UserContext = createContext<UserContextProps>({
   isAuthenticated: false,
 });
 
-interface UserContextProviderProps {
-  children: React.ReactNode;
-}
 
 const UserContextProvider: FunctionComponent<UserContextProviderProps> = ({
   children,

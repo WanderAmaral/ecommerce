@@ -22,10 +22,10 @@ export interface LoginUser {
 }
 
 const LoginPage = () => {
-  
+   
   const [isLoading, setIsLoading] = useState(false)
 
-  const {
+  const {  
     register,
     handleSubmit,
     setError,

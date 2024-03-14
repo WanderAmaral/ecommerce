@@ -12,7 +12,7 @@ import { CategoryContext } from "@/contexts/category.context";
 import Loading from "@/app/components/loading/loading.component";
 
 const Categories = () => {
-  const {categories, isLoading} = useContext(CategoryContext)
+  const {categories, isLoading } = useContext(CategoryContext)
   return (
     <div className="h-full w-full flex justify-center mt-10">
       {/*categories-container */}
