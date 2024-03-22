@@ -9,9 +9,10 @@ import { useContext } from "react";
 import { BsCart } from "react-icons/bs";
 import Cart from "../cart/cart.components";
 import { CartContext } from "@/contexts/cart.context";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const { isAuthenticated } = useContext(UserContext);
+  const {isAuthenticated} = useSelector((rootReducer: any) => rootReducer.userReducer)
   const {toggleCart} = useContext(CartContext)
 
   const handleClickSignOut = () => {

@@ -3,19 +3,23 @@ import { FunctionComponent, useEffect, useState } from "react";
 import Categories from "./components/categories.component";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "@/config/firebase-config";
-import { useContext } from "react";
-import { UserContext } from "@/contexts/user.context";
-import Button from "../components/button/button";
+;
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 
 import { UserConverter } from "@/converters/firestore.converter";
 import Loading from "../components/loading/loading.component";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const Home: FunctionComponent = () => {
+
+  const dispatch = useDispatch()
+  const {isAuthenticated} = useSelector((rootReducer: any) => rootReducer.userReducer)
+
+
   const [isInitializing, setIsInitializing] = useState(true)
-  const { isAdministrador, isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
+  
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -24,14 +28,16 @@ const Home: FunctionComponent = () => {
       console.log(user);
       const isSignInOut = isAuthenticated && !user
       if(isSignInOut) {
-        return logoutUser()
+        dispatch({type: 'LOGOUT_USER'})
+        
+
       }
       const isSignIngIn = !isAuthenticated && user
       if(isSignIngIn) {
         const querySnapshot = await getDocs(query(collection(db, 'users').withConverter(UserConverter), where('id', '==', user.uid)))
 
         const userFromFirestore = querySnapshot.docs[0]?.data()
-        return loginUser(userFromFirestore)
+        dispatch({type: 'LOGIN_USER', payload: userFromFirestore})
       }
       return setIsInitializing(false)
     });
@@ -46,8 +52,6 @@ const Home: FunctionComponent = () => {
   return (
     <div>
       <Categories />
-
-      {isAdministrador === true && <Button>Clique-me</Button>}
     </div>
   );
 };
