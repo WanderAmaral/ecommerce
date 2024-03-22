@@ -8,6 +8,10 @@ import UserContextProvider from "@/contexts/user.context";
 import CategoryContextProvider from "@/contexts/category.context";
 import CartContextProvider from "@/contexts/cart.context";
 import Cart from "./components/cart/cart.components";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import ProviderRedux from "./store/provider";
+
 
 
 
@@ -30,6 +34,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         
+        
+        <ProviderRedux>
         <UserContextProvider>
           <CategoryContextProvider>
             <CartContextProvider>
@@ -40,6 +46,8 @@ export default function RootLayout({
             </CartContextProvider>
           </CategoryContextProvider>
         </UserContextProvider>
+        </ProviderRedux>
+        
         
       </body>
     </html>
