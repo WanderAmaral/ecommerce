@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, db, googleProvider } from "@/config/firebase-config";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "react-hook-form";
@@ -15,6 +16,8 @@ import ErrorMessage from "../components/input/input-error-message";
 import Button from "../components/button/button";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import Loading from "../components/loading/loading.component";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 export interface LoginUser {
   email: string;
@@ -22,8 +25,12 @@ export interface LoginUser {
 }
 
 const LoginPage = () => {
+
+  const router = useRouter()
    
   const [isLoading, setIsLoading] = useState(false)
+
+  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer)
 
   const {  
     register,
@@ -32,10 +39,16 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm<LoginUser>();
 
+  useEffect(() => {
+    if(isAuthenticated) {
+      router.push('/')
+    }
+  }, [isAuthenticated])
+
   const onSubmit = async (data: LoginUser) => {
     try {
       setIsLoading(true)
-      const userCredentials = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         data.email,
         data.password
@@ -47,7 +60,7 @@ const LoginPage = () => {
         }
       })
       
-      console.log(userCredentials);
+      
 
     } catch (error) {
       console.log(error);

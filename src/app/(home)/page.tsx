@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { FunctionComponent, useEffect, useState } from "react";
 import Categories from "./components/categories.component";
@@ -10,6 +11,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { UserConverter } from "@/converters/firestore.converter";
 import Loading from "../components/loading/loading.component";
 import { useDispatch, useSelector } from "react-redux";
+import {loginUser, logoutUser } from "../store/reducers/user/user.action";
 
 
 const Home: FunctionComponent = () => {
@@ -25,25 +27,26 @@ const Home: FunctionComponent = () => {
     onAuthStateChanged(auth, async (user) => {
       // se o usuário estiver logado no contexto, e o usuário do firebase (sign out)
       // devemos limpar o contexto (sign out) 
-      console.log(user);
+      
       const isSignInOut = isAuthenticated && !user
       if(isSignInOut) {
-        dispatch({type: 'LOGOUT_USER'})
+        dispatch(logoutUser())
         
-
+        return setIsInitializing(false)
       }
       const isSignIngIn = !isAuthenticated && user
       if(isSignIngIn) {
         const querySnapshot = await getDocs(query(collection(db, 'users').withConverter(UserConverter), where('id', '==', user.uid)))
 
         const userFromFirestore = querySnapshot.docs[0]?.data()
-        dispatch({type: 'LOGIN_USER', payload: userFromFirestore})
+        dispatch(loginUser(userFromFirestore))
+        return setIsInitializing(false)
       }
       return setIsInitializing(false)
     });
     
-  },);
-  console.log({isAuthenticated})
+  }, [dispatch]);
+  
 
   
 

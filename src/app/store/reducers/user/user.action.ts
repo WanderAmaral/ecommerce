@@ -1,0 +1,6 @@
+import User from "@/types/users.types"
+import UserActionTypes from "./user.action.types"
+
+export const loginUser = (payload: User) => ({type: UserActionTypes.LOGIN, payload})
+
+export const logoutUser = () => ({type: UserActionTypes.LOGOUT})

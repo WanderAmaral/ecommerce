@@ -1,24 +1,27 @@
 "use client";
-
-import { auth } from "@/config/firebase-config";
-import { UserContext } from "@/contexts/user.context";
-import { signOut } from "firebase/auth";
 import Link from "next/link";
 import { useContext } from "react";
 
 import { BsCart } from "react-icons/bs";
-import Cart from "../cart/cart.components";
 import { CartContext } from "@/contexts/cart.context";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { auth } from "@/config/firebase-config";
+import { signOut } from "firebase/auth";
+import { logoutUser } from "@/app/store/reducers/user/user.action";
 
 const Header = () => {
+  
   const {isAuthenticated} = useSelector((rootReducer: any) => rootReducer.userReducer)
+  const dispatch = useDispatch()
+
   const {toggleCart} = useContext(CartContext)
 
   const handleClickSignOut = () => {
-    signOut(auth);
-    window.location.reload();
-    window.location.href = "/";
+    dispatch(logoutUser())
+    signOut(auth)
+    
+    
   };
   
   
