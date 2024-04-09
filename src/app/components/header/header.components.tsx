@@ -9,20 +9,23 @@ import { useDispatch } from "react-redux";
 import { auth } from "@/config/firebase-config";
 import { signOut } from "firebase/auth";
 import { logoutUser } from "@/app/store/reducers/user/user.action";
+import { toggleCart } from "@/app/store/reducers/cart/cart.action";
 
 const Header = () => {
   
   const {isAuthenticated} = useSelector((rootReducer: any) => rootReducer.userReducer)
   const dispatch = useDispatch()
 
-  const {toggleCart} = useContext(CartContext)
+  
 
   const handleClickSignOut = () => {
     dispatch(logoutUser())
     signOut(auth)
-    
-    
   };
+
+  const handleCartClick = () => {
+    dispatch(toggleCart())
+  }
   
   
   return (
@@ -33,7 +36,7 @@ const Header = () => {
         </Link>{" "}
       </div>
       <div className="flex items-center gap-10">
-        <div className="flex font-semibold text-sm cursor-pointer" onClick={toggleCart}>
+        <div className="flex font-semibold text-sm cursor-pointer" onClick={handleCartClick}>
           <BsCart size={20} />
           <p className="ml-1">5</p>
         </div>

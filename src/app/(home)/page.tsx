@@ -12,6 +12,7 @@ import { UserConverter } from "@/converters/firestore.converter";
 import Loading from "../components/loading/loading.component";
 import { useDispatch, useSelector } from "react-redux";
 import {loginUser, logoutUser } from "../store/reducers/user/user.action";
+import { url } from "inspector";
 
 
 const Home: FunctionComponent = () => {
@@ -53,7 +54,7 @@ const Home: FunctionComponent = () => {
   if(isInitializing ) return <Loading />
 
   return (
-    <div>
+    <div >
       <Categories />
     </div>
   );

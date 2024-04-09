@@ -1,5 +1,6 @@
 'use client'
 import CartProduct from "@/types/cart.types"
+import Product from "@/types/products.type"
 
 import { FunctionComponent, createContext, useState } from "react"
 
@@ -8,7 +9,7 @@ interface ICartContext {
     isVisible: boolean
     products: CartProduct[]
     toggleCart: () => void
-    
+    addProductToCart: (product: Product) => void
 }
 
 interface ICartContextProps {
@@ -18,7 +19,8 @@ interface ICartContextProps {
 export const CartContext = createContext<ICartContext>({
     isVisible: false,
     products: [],
-    toggleCart: () => {}
+    toggleCart: () => {},
+    addProductToCart: () => {}
 })
 
 const CartContextProvider: FunctionComponent<ICartContextProps> = ({children}) => {
@@ -29,7 +31,11 @@ const CartContextProvider: FunctionComponent<ICartContextProps> = ({children}) =
         setIsVisible((prevState) => !prevState)
     }
 
-    return <CartContext.Provider value={{isVisible, products, toggleCart}}>{children}</CartContext.Provider>
+    const addProductToCart = (product: Product) => {
+        setProducts((prevState) => [...prevState, {...product, quantity: 1}])
+    }
+
+    return <CartContext.Provider value={{isVisible, products, toggleCart, addProductToCart}}>{children}</CartContext.Provider>
 }
 
 export default CartContextProvider

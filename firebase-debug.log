@@ -1,0 +1,73 @@
+[debug] [2024-04-04T21:39:33.697Z] ----------------------------------------------------------------------
+[debug] [2024-04-04T21:39:33.700Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\amara\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-04-04T21:39:33.700Z] CLI Version:   13.2.1
+[debug] [2024-04-04T21:39:33.701Z] Platform:      win32
+[debug] [2024-04-04T21:39:33.701Z] Node Version:  v20.9.0
+[debug] [2024-04-04T21:39:33.702Z] Time:          Thu Apr 04 2024 18:39:33 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2024-04-04T21:39:33.702Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-04T21:39:33.780Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-04T21:39:33.781Z] > authorizing via signed-in user (wanderguizi@gmail.com)
+[debug] [2024-04-04T21:39:33.781Z] [iam] checking project club-ecommerce-313da for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-04-04T21:39:33.783Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/club-ecommerce-313da:testIamPermissions [none]
+[debug] [2024-04-04T21:39:33.783Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/club-ecommerce-313da:testIamPermissions x-goog-quota-user=projects/club-ecommerce-313da
+[debug] [2024-04-04T21:39:33.783Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/club-ecommerce-313da:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-04T21:39:34.769Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/club-ecommerce-313da:testIamPermissions 200
+[debug] [2024-04-04T21:39:34.769Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/club-ecommerce-313da:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-04T21:39:34.771Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/club-ecommerce-313da [none]
+[debug] [2024-04-04T21:39:35.165Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/club-ecommerce-313da 200
+[debug] [2024-04-04T21:39:35.166Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/club-ecommerce-313da {"projectId":"club-ecommerce-313da","projectNumber":"967700354438","displayName":"club-ecommerce","name":"projects/club-ecommerce-313da","resources":{"hostingSite":"club-ecommerce-313da"},"state":"ACTIVE","etag":"1_3b7954df-150b-46cf-a857-798a3b82b91f"}
+[debug] [2024-04-04T21:39:39.286Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites pageToken=&pageSize=10
+[debug] [2024-04-04T21:39:40.506Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites 200
+[debug] [2024-04-04T21:39:40.506Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites {"sites":[{"name":"projects/club-ecommerce-313da/sites/club-ecommerce-313da","defaultUrl":"https://club-ecommerce-313da.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-04-04T21:39:40.507Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites 
+[debug] [2024-04-04T21:39:40.843Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites 200
+[debug] [2024-04-04T21:39:40.843Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites {"sites":[{"name":"projects/club-ecommerce-313da/sites/club-ecommerce-313da","defaultUrl":"https://club-ecommerce-313da.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-04-04T21:39:40.843Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/club-ecommerce-313da/webApps/-/config [none]
+[debug] [2024-04-04T21:39:41.775Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/club-ecommerce-313da/webApps/-/config 200
+[debug] [2024-04-04T21:39:41.775Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/club-ecommerce-313da/webApps/-/config {"projectId":"club-ecommerce-313da","appId":"1:967700354438:web:27ce6090a13d6a231a8807","storageBucket":"club-ecommerce-313da.appspot.com","apiKey":"AIzaSyBTWfSnkr_a23YFeGb4ONmHlCFIikumY7k","authDomain":"club-ecommerce-313da.firebaseapp.com","messagingSenderId":"967700354438"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-04-04T21:39:50.708Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites/club-ecommerce-313da [none]
+[debug] [2024-04-04T21:39:51.706Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites/club-ecommerce-313da 200
+[debug] [2024-04-04T21:39:51.706Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/club-ecommerce-313da/sites/club-ecommerce-313da {"name":"projects/club-ecommerce-313da/sites/club-ecommerce-313da","defaultUrl":"https://club-ecommerce-313da.web.app","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 14.0.4
+
+[info]    - Environments: .env
+
+   Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] Failed to compile.
+
+
+[info] ./src/app/store/store.ts:7:15
+Type error: No overload matches this call.
+  Overload 1 of 2, '(reducer: Reducer<Partial<{ userReducer: never; }>, UserAction, Partial<{ userReducer: never; }>>, enhancer?: StoreEnhancer<{ dispatch: {}; }, {}> | undefined): Store<...> & { ...; }', gave the following error.
+    Argument of type 'Reducer<{ userReducer: InitialState; }, UserAction, Partial<{ userReducer: never; }>>' is not assignable to parameter of type 'Reducer<Partial<{ userReducer: never; }>, UserAction, Partial<{ userReducer: never; }>>'.
+      Type '{ userReducer: InitialState; }' is not assignable to type 'Partial<{ userReducer: never; }>'.
+  Overload 2 of 2, '(reducer: Reducer<{ userReducer: InitialState; }, UserAction, Partial<{ userReducer: never; }>>, preloadedState?: Partial<{ userReducer: never; }> | undefined, enhancer?: StoreEnhancer<...> | undefined): Store<...>', gave the following error.
+    Type 'StoreEnhancer<{ dispatch: {}; }, {}>' has no properties in common with type 'Partial<{ userReducer: never; }>'.
+
+   5 | import rootReducer from "./root-reducer";
+   6 |
+>  7 | const store = createStore(rootReducer, applyMiddleware(logger))
+     |               ^
+   8 |
+   9 | export type RootState = ReturnType<typeof store.getState>
+  10 |
+
+[debug] [2024-04-04T21:40:04.636Z] Error: ENOENT: no such file or directory, open 'C:\Users\amara\Desktop\ecommerce-NextJs\ecommerce\.next\export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
