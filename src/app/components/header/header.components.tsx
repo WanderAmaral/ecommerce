@@ -1,21 +1,22 @@
 "use client";
 import Link from "next/link";
-import { useContext } from "react";
 
 import { BsCart } from "react-icons/bs";
-import { CartContext } from "@/contexts/cart.context";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { auth } from "@/config/firebase-config";
 import { signOut } from "firebase/auth";
 import { logoutUser } from "@/app/store/reducers/user/user.action";
 import { toggleCart } from "@/app/store/reducers/cart/cart.action";
+import { useAppleSelector } from "@/hooks/redux.hooks";
+import { selectProductCount } from "@/app/store/reducers/cart/cart-selector";
 
 const Header = () => {
   
   const {isAuthenticated} = useSelector((rootReducer: any) => rootReducer.userReducer)
   const dispatch = useDispatch()
 
+  const productCount = useAppleSelector(selectProductCount);
   
 
   const handleClickSignOut = () => {
@@ -38,7 +39,7 @@ const Header = () => {
       <div className="flex items-center gap-10">
         <div className="flex font-semibold text-sm cursor-pointer" onClick={handleCartClick}>
           <BsCart size={20} />
-          <p className="ml-1">5</p>
+          <p className="ml-1">{productCount}</p>
         </div>
         <Link href={"/explore"}>
         <div className="font-semibold text-sm cursor-pointer">Explorar</div>
