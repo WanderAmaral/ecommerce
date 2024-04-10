@@ -10,4 +10,9 @@ export const toggleCart = () => ({
 export const addProductToCart = (payload: Product) => ({
     type: CartActionTypes.addProductToCart,
     payload
-  })
+})
+
+export const removeProductToCart = () => ({
+    type: CartActionTypes.removeProductToCart
+})
+
