@@ -8,6 +8,10 @@ import { useAppleSelector } from "@/hooks/redux.hooks";
 import { useDispatch } from "react-redux";
 import { toggleCart } from "@/app/store/reducers/cart/cart.action";
 
+import CartProduct from "@/types/cart.types";
+import CartItemComponent from "@/app/cart-item/cart-item-component";
+
+
 
 
 const Cart: FunctionComponent = () => {
@@ -17,6 +21,7 @@ const Cart: FunctionComponent = () => {
 
     const handleClickToggleCart = () => {
         dispatch(toggleCart())
+        
     }
 
     
@@ -26,8 +31,9 @@ const Cart: FunctionComponent = () => {
         ${isVisible ? 'opacity-100 visible': 'opacity-0 invisible'}`}> 
             <div className="w-full" onClick={handleClickToggleCart}/>
             <div className="h-full w-96  bg-white p-5 overflow-y-scroll"> 
-                <h1 className=" text-xl font-semibold mb-15">Seu  Carrinho</h1>
-                {products.map((item: any) => (<p key={item.id}>Hello</p>))}
+                <h1 className=" text-xl font-semibold mb-15 flex items-center justify-center mb-5">Seu  Carrinho</h1>
+                {products.map((product: CartProduct) => (<CartItemComponent key={product.id} product={product}/>
+            ))}
 
                 {/* Products */}
                 <p className=" font-semibold text-xl mb-4">Total: R$998</p>

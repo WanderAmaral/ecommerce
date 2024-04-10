@@ -1,8 +1,6 @@
 import Product from "@/types/products.type";
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent} from "react";
 import Image from "next/image";
-import Button from "@/app/components/button/button";
-import { CartContext } from "@/contexts/cart.context";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "@/app/store/reducers/cart/cart.action";
 
@@ -15,6 +13,7 @@ const ProductItem: FunctionComponent<ProductItemProps> = ({product}) => {
 
     const handleClickAddProduct = () => {
         dispatch(addProductToCart(product))
+        
     }
  
     return ( 
