@@ -1,7 +1,13 @@
 import CartProduct from "@/types/cart.types";
 import { FunctionComponent } from "react";
-import Button from "../components/button/button";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { IoMdClose } from "react-icons/io";
+import {
+  decreaseProductFromCart,
+  increaseProductFromCart,
+  removeProductToCart,
+} from "../store/reducers/cart/cart.action";
 
 interface CartProductProps {
   product: CartProduct;
@@ -10,6 +16,20 @@ interface CartProductProps {
 const CartItemComponent: FunctionComponent<CartProductProps> = ({
   product,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleClickRemoveProduct = () => {
+    dispatch(removeProductToCart(product.id));
+  };
+
+  const handleIncreaseProductCart = () => {
+    dispatch(increaseProductFromCart(product.id));
+  };
+
+  const handleDescreaseProduct = () => {
+    dispatch(decreaseProductFromCart(product.id))
+  }
+
   return (
     <div className="flex  items-center mb-4 text-black">
       {/* container */}
@@ -25,6 +45,9 @@ const CartItemComponent: FunctionComponent<CartProductProps> = ({
         {/* image */}
       </div>
       <div className="flex flex-col ml-5">
+        <div className="flex items-end justify-end cursor-pointer">
+          <IoMdClose size={28} onClick={handleClickRemoveProduct} />
+        </div>
         {/* content */}
         <p className="text-lg font-semibold">{product.name}</p>
         <p className="mt-4">R$: {product.price}</p>
@@ -35,9 +58,9 @@ const CartItemComponent: FunctionComponent<CartProductProps> = ({
         <div className="flex gap-3 justify-center mt-3">
           {/* remove Button */}
 
-          <BsChevronLeft size={25} />
+          <BsChevronLeft size={25} onClick={handleDescreaseProduct} className="cursor-pointer hover:bg-zinc-400 rounded-lg"/>
 
-          <BsChevronRight size={25} />
+          <BsChevronRight size={25} onClick={handleIncreaseProductCart} className="cursor-pointer hover:bg-zinc-400 rounded-lg"/>
         </div>
       </div>
     </div>
