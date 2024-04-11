@@ -1,29 +1,33 @@
-import { CartActions } from "./cart.action";
-import CartProduct from "@/types/cart.types";
-import CartActionTypes from "./cart-actions-types";
+import CartProduct from "@/types/cart.types"
+import { CartActions } from "./cart.action"
+import CartActionTypes from "./cart-actions-types"
+
 
 interface InitialState {
-  isVisible: boolean;
-  products: CartProduct[];
+  isVisible: boolean
+  products: CartProduct[]
 }
 
 const initialState: InitialState = {
   isVisible: false,
-  products: [],
-};
+  products: []
+}
 
-const cartReducer = (state = initialState, action: CartActions): InitialState => {
+const cartReducer = (
+  state = initialState,
+  action: CartActions
+): InitialState => {
   switch (action.type) {
     case CartActionTypes.toggleCart:
-      return { ...state, isVisible: !state.isVisible };
+      return { ...state, isVisible: !state.isVisible }
 
     case CartActionTypes.addProductToCart: {
-      const product = action.payload;
+      const product = action.payload
 
       // verificar se o produto já está no carrinho
       const productIsAlreadyInCart = state.products.some(
         (item) => item.id === product.id
-      );
+      )
 
       // se sim -> aumentar sua quantidade
       if (productIsAlreadyInCart) {
@@ -33,54 +37,56 @@ const cartReducer = (state = initialState, action: CartActions): InitialState =>
             item.id === product.id
               ? { ...item, quantity: item.quantity + 1 }
               : item
-          ),
-        };
+          )
+        }
       }
 
       // se não -> adicioná-lo
       return {
         ...state,
-        products: [...state.products, { ...product, quantity: 1 }],
-      };
+        products: [...state.products, { ...product, quantity: 1 }]
+      }
     }
 
-    case CartActionTypes.removeProductToCart: {
+    case CartActionTypes.removeProductFromCart:
       return {
         ...state,
-        products: state.products.filter((item) => item.id !== action.payload),
-      };
-    }
+        products: state.products.filter(
+          (product) => product.id !== action.payload
+        )
+      }
 
-    case CartActionTypes.increaseProductQuanityCart: {
+    case CartActionTypes.increaseCartProductQuantity:
       return {
         ...state,
-        products: state.products.map((item) =>
-          item.id === action.payload
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ),
-      };
-    }
+        products: state.products.map((product) =>
+          product.id === action.payload
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
+        )
+      }
 
-    case CartActionTypes.decreaseProductQuanityCart: {
+    case CartActionTypes.decreaseCartProductQuantity:
       return {
         ...state,
         products: state.products
-          .map((item) =>
-            item.id === action.payload
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
+          .map((product) =>
+            product.id === action.payload
+              ? { ...product, quantity: product.quantity - 1 }
+              : product
           )
-          .filter((item) => item.quantity > 0),
-      };
-    }
+          .filter((product) => product.quantity > 0)
+      }
 
-    case CartActionTypes.clearCartProducts: {
-      return { ...state, products: [] };
-    }
+    case CartActionTypes.clearCartProducts:
+      return {
+        ...state,
+        products: []
+      }
+
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default cartReducer;
+export default cartReducer
