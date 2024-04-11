@@ -1,3 +1,4 @@
+import { CartActions } from "./cart.action";
 import CartProduct from "@/types/cart.types";
 import CartActionTypes from "./cart-actions-types";
 
@@ -11,7 +12,7 @@ const initialState: InitialState = {
   products: [],
 };
 
-const cartReducer = (state = initialState, action: any) => {
+const cartReducer = (state = initialState, action: CartActions): InitialState => {
   switch (action.type) {
     case CartActionTypes.toggleCart:
       return { ...state, isVisible: !state.isVisible };
@@ -78,7 +79,7 @@ const cartReducer = (state = initialState, action: any) => {
       return { ...state, products: [] };
     }
     default:
-      return { ...state };
+      return state;
   }
 };
 
