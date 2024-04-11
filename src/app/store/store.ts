@@ -1,11 +1,27 @@
-'use client'
+"use client";
 import { createStore, applyMiddleware } from "redux";
-import {logger} from 'redux-logger'
+import { logger } from "redux-logger";
 
 import rootReducer from "./root-reducer";
+// @ts-ignore
+import storage from "redux-persist/lib/storage";
+// @ts-ignore
+import persistReducer from "redux-persist/es/persistReducer";
+// @ts-ignore
+import persistStore from "redux-persist/es/persistStore";
 
-const store = createStore(rootReducer, applyMiddleware(logger))
+const persistConfig = {
+  key: "root",
+  storage,
+  whiteList: ["cartReducer"],
+};
 
-export type RootState = ReturnType<typeof store.getState>
+const persistRootReducer: typeof rootReducer = persistReducer(
+  persistConfig,
+  rootReducer
+);
 
-export default store
+export const store = createStore(persistRootReducer, applyMiddleware(logger));
+export const persisterStore = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
