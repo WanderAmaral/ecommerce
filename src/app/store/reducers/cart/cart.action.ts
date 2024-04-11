@@ -3,6 +3,7 @@ import CartActionTypes from "./cart-actions-types";
 
 interface ToggleCartAction {
   type: typeof CartActionTypes.toggleCart;
+  [key: string]: any;
 }
 
 export const toggleCart = (): ToggleCartAction => ({
@@ -12,6 +13,7 @@ export const toggleCart = (): ToggleCartAction => ({
 interface AddProductToCartAction {
   type: typeof CartActionTypes.addProductToCart;
   payload: Product;
+  [key: string]: any;
 }
 
 export const addProductToCart = (payload: Product): AddProductToCartAction => ({
@@ -60,6 +62,7 @@ export const decreaseCartProductQuantity = (
 
 interface ClearCartProductsAction {
   type: typeof CartActionTypes.clearCartProducts;
+  [key: string]: any;
 }
 
 export const clearCartProducts = (): ClearCartProductsAction => ({
