@@ -1,18 +1,14 @@
 "use client";
 
-import Category from "@/types/category.type";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 
-
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "@/config/firebase-config";
 import CategoryItem from "./category-item.component";
-import { categoryConverter } from "@/converters/firestore.converter";
 import { CategoryContext } from "@/contexts/category.context";
 import Loading from "@/app/components/loading/loading.component";
 
 const Categories = () => {
-  const {categories, isLoading } = useContext(CategoryContext)
+  const { categories, isLoading } = useContext(CategoryContext);
+
   return (
     <div className="h-full w-full flex justify-center mt-10">
       {/*categories-container */}

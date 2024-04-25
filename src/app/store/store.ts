@@ -1,6 +1,8 @@
 "use client";
-import { createStore, applyMiddleware } from "redux";
+
 import { logger } from "redux-logger";
+import { thunk } from "redux-thunk";
+import { Tuple, configureStore } from "@reduxjs/toolkit";
 
 import rootReducer from "./root-reducer";
 // @ts-ignore
@@ -21,7 +23,10 @@ const persistRootReducer: typeof rootReducer = persistReducer(
   rootReducer
 );
 
-export const store = createStore(persistRootReducer, applyMiddleware(logger));
+export const store = configureStore({
+  reducer: persistRootReducer,
+  middleware: () => new Tuple(thunk, logger),
+});
 export const persisterStore = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
