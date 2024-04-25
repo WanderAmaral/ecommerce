@@ -6,14 +6,11 @@ import Button from "../button/button";
 
 import { useAppleSelector } from "@/hooks/redux.hooks";
 import { useDispatch } from "react-redux";
-import { toggleCart } from "@/app/store/reducers/cart/cart.action";
 
 import CartProduct from "@/types/cart.types";
 import CartItemComponent from "@/app/cart-item/cart-item-component";
-import {
-  
-  selectProductTotalPrice,
-} from "@/app/store/reducers/cart/cart-selector";
+import { selectProductTotalPrice } from "@/app/store/reducers/cart/cart-selector";
+import { toggleCart } from "@/app/store/toolkit/cart/cart.slice";
 
 const Cart: FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -23,7 +20,6 @@ const Cart: FunctionComponent = () => {
   );
 
   const productTotalPrice = useAppleSelector(selectProductTotalPrice);
-  
 
   console.log({ productTotalPrice });
   const handleClickToggleCart = () => {

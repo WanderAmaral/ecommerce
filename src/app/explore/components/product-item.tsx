@@ -1,8 +1,7 @@
 import Product from "@/types/products.type";
 import { FunctionComponent } from "react";
-import Image from "next/image";
 import { useDispatch } from "react-redux";
-import { addProductToCart } from "@/app/store/reducers/cart/cart.action";
+import { addProductToCart } from "@/app/store/toolkit/cart/cart.slice";
 
 interface ProductItemProps {
   product: Product;

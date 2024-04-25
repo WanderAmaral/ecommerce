@@ -7,10 +7,10 @@ import { useDispatch } from "react-redux";
 import { auth } from "@/config/firebase-config";
 import { signOut } from "firebase/auth";
 
-import { toggleCart } from "@/app/store/reducers/cart/cart.action";
+import { toggleCart } from "@/app/store/toolkit/cart/cart.slice";
 import { useAppleSelector } from "@/hooks/redux.hooks";
 import { selectProductCount } from "@/app/store/reducers/cart/cart-selector";
-import { logoutUser } from "@/app/store/reducers/toolkit/user/user.slice";
+import { logoutUser } from "@/app/store/toolkit/user/user.slice";
 
 const Header = () => {
   const { isAuthenticated } = useSelector(

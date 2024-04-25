@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { IoMdClose } from "react-icons/io";
-import { decreaseCartProductQuantity, increaseCartProductQuantity, removeProductFromCart } from "../store/reducers/cart/cart.action";
+import { decreaseCartProductQuantity, increaseCartProductQuantity, removeProductFromCart } from "../store/toolkit/cart/cart.slice";
 
 interface CartProductProps {
   product: CartProduct;

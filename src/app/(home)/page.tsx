@@ -9,8 +9,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { UserConverter } from "@/converters/firestore.converter";
 import Loading from "../components/loading/loading.component";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, logoutUser } from "../store/reducers/toolkit/user/user.slice";
-
+import { loginUser, logoutUser } from "../store/toolkit/user/user.slice";
 
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();

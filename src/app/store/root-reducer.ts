@@ -1,12 +1,12 @@
-import cartReducer from './reducers/cart/cart-reducer';
-import categoryReducer from './reducers/category/category-reducer';
+import cartReducer from "./toolkit/cart/cart.slice";
+import categoryReducer from "./reducers/category/category-reducer";
 import { combineReducers } from "redux";
-import userReducer from './reducers/toolkit/user/user.slice';
+import userReducer from "./toolkit/user/user.slice";
 
 const rootReducer = combineReducers({
-    userReducer,
-    cartReducer,
-    categoryReducer
-})
+  userReducer,
+  cartReducer,
+  categoryReducer,
+});
 
-export default rootReducer
+export default rootReducer;
