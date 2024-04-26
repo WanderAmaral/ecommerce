@@ -1,5 +1,5 @@
 import cartReducer from "./toolkit/cart/cart.slice";
-import categoryReducer from "./reducers/category/category-reducer";
+import categoryReducer from "./toolkit/category/category.slice";
 import { combineReducers } from "redux";
 import userReducer from "./toolkit/user/user.slice";
 

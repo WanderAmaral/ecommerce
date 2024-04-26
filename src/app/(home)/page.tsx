@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { FunctionComponent, useEffect, useState } from "react";
-import Categories from "./components/categories.component";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "@/config/firebase-config";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -10,6 +10,7 @@ import { UserConverter } from "@/converters/firestore.converter";
 import Loading from "../components/loading/loading.component";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, logoutUser } from "../store/toolkit/user/user.slice";
+import { Categories } from "./components/Categories";
 
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();
