@@ -16,24 +16,24 @@ const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex border rounded-lg border-black">
       <div
-        className=" h-96 w-56 rounded-lg shadow-xl cursor-pointer hover:opacity-70"
-        
+        className=" h-80 w-56 rounded-lg shadow-xl cursor-pointer hover:opacity-70 border-r border-black"
         style={{
           backgroundImage: `url('${product.imageUrl}')`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-      >
-      </div>
+      ></div>
 
-      <div className="flex flex-col ">
-        <p className=" text-[16px] font-bold">{product.name}</p>
-        <p className=" text-lg font-medium">R$: {product.price}</p>
-      </div>
+      <div className="flex flex-col justify-between">
+        <div className="flex flex-col items-center justify-center pt-20 px-2">
+          <p className=" text-2xl font-bold pb-5">{product.name}</p>
+          <p className=" text-3xl font-bold">R$: {product.price},00</p>
+        </div>
         <Button onClick={handleClickAddProduct}>Adicionar ao carrinho</Button>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth, db, googleProvider } from "@/config/firebase-config";
 import React, { useEffect, useState } from "react";
 import { BsGoogle } from "react-icons/bs";
@@ -25,14 +29,15 @@ export interface LoginUser {
 }
 
 const LoginPage = () => {
+  const router = useRouter();
 
-  const router = useRouter()
-   
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer)
+  const { isAuthenticated } = useSelector(
+    (rootReducer: any) => rootReducer.userReducer
+  );
 
-  const {  
+  const {
     register,
     handleSubmit,
     setError,
@@ -40,28 +45,21 @@ const LoginPage = () => {
   } = useForm<LoginUser>();
 
   useEffect(() => {
-    if(isAuthenticated) {
-      router.push('/')
+    if (isAuthenticated) {
+      router.push("/");
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   const onSubmit = async (data: LoginUser) => {
     try {
-      setIsLoading(true)
-      await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      
-      onAuthStateChanged(auth, (user) => {
-        if(user) {
-          window.location.href = "/"
-        }
-      })
-      
-      
+      setIsLoading(true);
+      await signInWithEmailAndPassword(auth, data.email, data.password);
 
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          window.location.href = "/";
+        }
+      });
     } catch (error) {
       console.log(error);
       const _error = error as AuthError;
@@ -73,13 +71,13 @@ const LoginPage = () => {
         return setError("password", { type: "mismatch" });
       }
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
   const handleClickGoogleSignIn = async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const userCredentials = await signInWithPopup(auth, googleProvider);
       const querySnapshot = await getDocs(
         query(
@@ -104,11 +102,11 @@ const LoginPage = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
-  if(isLoading) return <Loading />
+  if (isLoading) return <Loading />;
 
   return (
     <div className="h-full flex items-center justify-center mt-24">
@@ -124,7 +122,7 @@ const LoginPage = () => {
 
         <div className="w-full gap-2  max-h-11 bg-background-dark text-texto-white flex items-center justify-center rounded-lg  pt-5 pb-5 mt-5 font-semibold hover:bg-zinc-500 transition ease-in duration-300">
           <BsGoogle size={18} />
-          <button onClick={handleClickGoogleSignIn}>Entrar com o google</button>
+          <Button onClick={handleClickGoogleSignIn}>Entrar com o google</Button>
         </div>
         <p className="text-primary w-full p-3 mb-8 text-center font-medium border-b border-black">
           ou entre com seu email
@@ -178,7 +176,6 @@ const LoginPage = () => {
           {/* End LoginInputContainer */}
           <Button type="submit" startIcon={<FiLogIn size={18} />}>
             Entrar
-            
           </Button>
         </form>
         {/* Add your button component or Tailwind CSS classes here */}
