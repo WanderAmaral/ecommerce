@@ -12,15 +12,17 @@ const Button: FunctionComponent<ButtonProps> = ({
   onClick,
 }) => {
   return (
-    <button
-      onClick={onClick}
-      className="w-full rounded-r-lg  max-h-11 bg-blue-600 text-texto-white text-sm px-3 flex items-center justify-center  pt-5 pb-5 mt-5 font-semibold hover:bg-blue-800 transition ease-in duration-300"
-    >
-      {startIcon && (
-        <div className="flex h-full items-center mr-8">{startIcon}</div>
-      )}
-      {children}
-    </button>
+    <div>
+      <button
+        onClick={onClick}
+        className="w-full rounded-lg justify-center  items-center bg-black p-3 text-texto-white text-sm  flex  font-semibold  transition ease-in duration-300"
+      >
+        {startIcon && (
+          <div className="flex h-full items-center mr-3">{startIcon}</div>
+        )}
+        {children}
+      </button>
+    </div>
   );
 };
 

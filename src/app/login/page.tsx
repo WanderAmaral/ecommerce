@@ -120,9 +120,9 @@ const LoginPage = () => {
         {/* LoginHeadline */}
         {/* LoginSubtitle */}
 
-        <div className="w-full gap-2  max-h-11 bg-background-dark text-texto-white flex items-center justify-center rounded-lg  pt-5 pb-5 mt-5 font-semibold hover:bg-zinc-500 transition ease-in duration-300">
-          <BsGoogle size={18} />
-          <Button onClick={handleClickGoogleSignIn}>Entrar com o google</Button>
+        <div className="w-full gap-2  ">
+          
+          <Button onClick={handleClickGoogleSignIn} startIcon={<BsGoogle size={18} />}>Entrar com o google</Button>
         </div>
         <p className="text-primary w-full p-3 mb-8 text-center font-medium border-b border-black">
           ou entre com seu email
@@ -174,9 +174,14 @@ const LoginPage = () => {
           </div>
 
           {/* End LoginInputContainer */}
-          <Button type="submit" startIcon={<FiLogIn size={18} />}>
+          {/* <Button type="submit" startIcon={<FiLogIn size={18} />}>
             Entrar
-          </Button>
+          </Button> */}
+          <div className="pt-5">
+            <Button type="submit" startIcon={<FiLogIn size={18} />}>
+              Entrar
+            </Button>
+          </div>
         </form>
         {/* Add your button component or Tailwind CSS classes here */}
       </div>
