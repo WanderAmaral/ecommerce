@@ -41,13 +41,19 @@ const Cart: FunctionComponent = () => {
         ))}
 
         {/* Products */}
-        <p className="  text-xl mb-4">
-          Preço Total: R$:{" "}
-          <span className=" font-semibold">{productTotalPrice}</span>
-        </p>
-        <Button startIcon={<BsCartCheck size={30} />}>
-          Ir Para o Checkout
-        </Button>
+        {productTotalPrice === 0 ? (
+          <></>
+        ) : (
+          <div>
+            <p className="  text-xl mb-4">
+              Preço Total: R$:{" "}
+              <span className=" font-semibold">{productTotalPrice}</span>
+            </p>
+            <Button startIcon={<BsCartCheck size={30} />}>
+              Ir Para o Checkout
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
