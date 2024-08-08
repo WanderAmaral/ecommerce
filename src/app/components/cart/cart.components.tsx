@@ -32,7 +32,7 @@ const Cart: FunctionComponent = () => {
         ${isVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}
     >
       <div className="w-full" onClick={handleClickToggleCart} />
-      <div className="h-full w-96  bg-white p-5 overflow-y-scroll">
+      <div className="h-full w-96  bg-white p-5 overflow-y-scroll justify-between">
         <h1 className=" text-xl font-semibold mb-15 flex items-center justify-center mb-5">
           Seu Carrinho
         </h1>
@@ -42,14 +42,14 @@ const Cart: FunctionComponent = () => {
 
         {/* Products */}
         {productTotalPrice === 0 ? (
-          <></>
+          <><h1 className="font-bold text-xl">Vamos comprar algo?</h1></>
         ) : (
           <div>
             <p className="  text-xl mb-4">
               Preço Total: R$:{" "}
               <span className=" font-semibold">{productTotalPrice}</span>
             </p>
-            <Button startIcon={<BsCartCheck size={30} />}>
+            <Button className=" rounded-l-lg bg-green-400 text-black" startIcon={<BsCartCheck size={30} />}>
               Ir Para o Checkout
             </Button>
           </div>

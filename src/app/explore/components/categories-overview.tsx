@@ -19,7 +19,7 @@ const CategoriesOverview: FunctionComponent = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <div className="pt-0 pb-5 pr-10 pl-10">
+    <div className="px-10 flex items-center flex-col justify-center">
       {categories.map((category) => (
         <CategoryOverview key={category.id} category={category} />
       ))}

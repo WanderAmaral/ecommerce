@@ -16,9 +16,9 @@ const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
   };
 
   return (
-    <div className="flex border rounded-lg border-black">
+    <div className="flex border rounded-lg border-black w-[350px] ">
       <div
-        className=" h-80 w-56 rounded-lg shadow-xl cursor-pointer hover:opacity-70 border-r border-black"
+        className="h-80 w-56 rounded--lg shadow-xl cursor-pointer hover:opacity-70 border-r border-black"
         style={{
           backgroundImage: `url('${product.imageUrl}')`,
           backgroundPosition: "center",
@@ -28,9 +28,9 @@ const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
       ></div>
 
       <div className="flex flex-col justify-between">
-        <div className="flex flex-col items-center justify-center pt-20 px-2">
-          <p className=" text-2xl font-bold pb-5">{product.name}</p>
-          <p className=" text-3xl font-bold">R$: {product.price},00</p>
+        <div className="flex flex-col items-center justify-center pt-10">
+          <p className=" text-xl font-bold pb-5 text-center">{product.name}</p>
+          <p className=" text-2xl font-bold">R$: {product.price},00</p>
         </div>
 
         <div>

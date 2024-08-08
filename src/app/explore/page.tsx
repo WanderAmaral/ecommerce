@@ -3,7 +3,7 @@ import CategoriesOverview from "./components/categories-overview";
 
 const Explorer: FunctionComponent = () => {
     return ( 
-        <div>
+        <div >
             <CategoriesOverview />
         </div>
      );

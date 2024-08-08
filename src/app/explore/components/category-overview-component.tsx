@@ -11,12 +11,15 @@ const CategoryOverview: FunctionComponent<CategoryOverviewProps> = ({
 }) => {
   return (
     <div className="flex flex-col w-full py-8">
-      <p className=" text-3xl font-bold py-10">{category.displayName}</p>
-      <div className="flex justify-between flex-wrap gap-2">
+      <div className=" items-center justify-center flex flex-col">
+      <p className=" text-3xl font-bold py-10 flex">{category.displayName}</p>
+      <div className="flex gap-10">
         {category.products.slice(0, 4).map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}
       </div>
+      </div>
+      
     </div>
   );
 };
