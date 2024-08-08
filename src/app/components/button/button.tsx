@@ -20,7 +20,7 @@ const Button: FunctionComponent<ButtonProps> = ({
     <div className="w-full">
       <button
         onClick={onClick}
-        className={cn("w-full rounded-r-lg justify-center  items-center bg-black p-3 text-texto-white text-sm  flex  font-semibold  transition ease-in duration-300", className)}
+        className={cn("w-full rounded-lg justify-center  items-center bg-black p-3 text-texto-white text-sm  flex  font-semibold  transition ease-in duration-300", className)}
       >
         {startIcon && (
           <div className="flex h-full items-center mr-3">{startIcon}</div>
