@@ -11,9 +11,11 @@ import CartProduct from "@/types/cart.types";
 import CartItemComponent from "@/app/cart-item/cart-item-component";
 import { selectProductTotalPrice } from "@/app/store/reducers/cart/cart-selector";
 import { toggleCart } from "@/app/store/toolkit/cart/cart.slice";
+import { useRouter } from "next/navigation";
 
 const Cart: FunctionComponent = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const { isVisible, products } = useAppleSelector(
     (state: any) => state.cartReducer
@@ -21,9 +23,13 @@ const Cart: FunctionComponent = () => {
 
   const productTotalPrice = useAppleSelector(selectProductTotalPrice);
 
-  console.log({ productTotalPrice });
   const handleClickToggleCart = () => {
     dispatch(toggleCart());
+  };
+
+  const handleClickCheckout = () => {
+    dispatch(toggleCart());
+    router.push("/checkout");
   };
 
   return (
@@ -42,14 +48,25 @@ const Cart: FunctionComponent = () => {
 
         {/* Products */}
         {productTotalPrice === 0 ? (
-          <><h1 className="font-bold text-xl">Vamos comprar algo?</h1></>
+          <>
+            <h1 className="font-bold text-xl">Vamos comprar algo?</h1>
+          </>
         ) : (
           <div>
             <p className="  text-xl mb-4">
               Preço Total: R$:{" "}
-              <span className=" font-semibold">{productTotalPrice}</span>
+              <span className=" font-semibold">
+                {Intl.NumberFormat("pt-br", {
+                  currency: "BRL",
+                  minimumFractionDigits: 2,
+                }).format(productTotalPrice)}
+              </span>
             </p>
-            <Button className=" rounded-l-lg bg-green-400 text-black" startIcon={<BsCartCheck size={30} />}>
+            <Button
+              onClick={handleClickCheckout}
+              className=" rounded-l-lg bg-green-400 text-black"
+              startIcon={<BsCartCheck size={30} />}
+            >
               Ir Para o Checkout
             </Button>
           </div>
