@@ -5,10 +5,26 @@ import { useAppleSelector } from "@/hooks/redux.hooks";
 import Button from "../button/button";
 import CartItemComponent from "@/app/cart-item/cart-item-component";
 import { selectProductTotalPrice } from "../../store/reducers/cart/cart-selector";
+import axios from "axios";
 
 const Checkout: FunctionComponent = () => {
   const { products } = useAppleSelector((state) => state.cartReducer);
   const productsTotalPrice = useAppleSelector(selectProductTotalPrice);
+
+  const handleFinishPurschaseClick = async () => {
+    try {
+      // const { data } = await axios.post(
+      //   `${process.env.REACT_APP_API_URL}/create-checkout-session`,
+      //   {
+      //     products,
+      //   }
+      // );
+      console.log(process.env.REACT_APP_API_URL);
+      //console.log(data.url);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center pt-7 pb-7 overflow-hidden">
@@ -31,7 +47,11 @@ const Checkout: FunctionComponent = () => {
           </p>
 
           <div className="w-full flex justify-center">
-            <Button startIcon={<BsBagCheck />} className="w-[650px]">
+            <Button
+              startIcon={<BsBagCheck />}
+              className="w-[650px]"
+              onClick={handleFinishPurschaseClick}
+            >
               Finalizar Compra
             </Button>
           </div>

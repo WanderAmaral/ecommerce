@@ -1,6 +1,5 @@
 "use client";
 
-
 import { auth, db } from "@/config/firebase-config";
 import User from "@/types/users.types";
 import { onAuthStateChanged } from "firebase/auth";
@@ -12,18 +11,15 @@ import React, {
   useState,
 } from "react";
 
-
-
 interface UserContextProviderProps {
   children: React.ReactNode;
 }
 interface UserContextProps {
   adminUser: UserAdm | null;
   isAdministrador: UserAdm | boolean;
-  isAuthenticated: boolean
+  isAuthenticated: boolean;
   loginUser: (user: User) => void;
   logoutUser: () => void;
-  
 }
 interface UserAdm {
   email: string;
@@ -37,19 +33,18 @@ export const UserContext = createContext<UserContextProps>({
   isAuthenticated: false,
 });
 
-
 const UserContextProvider: FunctionComponent<UserContextProviderProps> = ({
   children,
 }) => {
   // Defina o estado inicial como um objeto UserAdm
   const [adminUser, setAdminUser] = useState<UserAdm | null>({
-    email: process.env.USER_EMAIL || 'wanderguizi@gmail.com'
+    email: process.env.USER_EMAIL || "wanderguizi@gmail.com",
   });
   const [isAdministrador, setIsAdministrador] = useState<UserAdm | boolean>(
     false
   );
 
-  const isAuthenticated = adminUser !== null
+  const isAuthenticated = adminUser !== null;
 
   const loginUser = (user: User) => {
     setAdminUser(user);
@@ -90,7 +85,13 @@ const UserContextProvider: FunctionComponent<UserContextProviderProps> = ({
 
   return (
     <UserContext.Provider
-      value={{ adminUser, isAdministrador, loginUser, logoutUser, isAuthenticated }}
+      value={{
+        adminUser,
+        isAdministrador,
+        loginUser,
+        logoutUser,
+        isAuthenticated,
+      }}
     >
       {children}
     </UserContext.Provider>
